@@ -83,17 +83,17 @@
 
 # **Основы**
 ## Клонирование репозитория 
-При текущей команде он создаст в текущей директории, директорию GitHubRepository
+Команда для клонирования репозитория с сервера.
 
-    git clone https://github.com/GitHubUserame/GitHubRepository
+    git clone <url>
 
-Если же нужно склонировать в другую директорию то вторым параметром указывается путь к директории
+Если требуется склонировать в другую директорию, то вторым параметром указывается путь к директории.
 
-    git clone https://github.com/GitHubUserame/GitHubRepository path
+    git clone <url> <path>
 
 Для клонирования определённой ветки, нужно указать её через флаг `-b`
     
-    git clone -b branch_name https://github.com/GitHubUserame/GitHubRepository
+    git clone -b <branch-name> <url>
 
 ## Просмотр текущего состояния 
 Проверка текущего состояния всех файлов
@@ -130,7 +130,7 @@
 
 Так же можно указать определённый файл который нужно посмотреть на изменения
 
-    git diff file_name
+    git diff <file-name>
 
 Проверка на наличие лишних пробелов в коде. Очень хорошей практикой является запускать эту команду перед коммитом. 
 
@@ -140,7 +140,7 @@
 ## Добавление в отслеживаемые файлы
 Для того чтобы начать отслеживать новый файл
 
-    git add file_name
+    git add <file-name>
 
 Если же добавляется директория, то все файлы находящиеся в ней будут так же добавлены в отслеживаемые 
 
@@ -162,7 +162,7 @@
 
 Так же можно задать сообщение об фиксации и в самой команде, без открытия текстового редактора
 
-    git commit -m "comment"
+    git commit -m "<comment>"
 
 Выполнение коммита со всеми изменениями в рабочем каталоге
 
@@ -174,17 +174,17 @@
 
 Изменение сообщения последнего коммита, без редактора 
 
-    git commit --amend -m "new comment"
+    git commit --amend -m "<new-comment>"
 
 Так же если был сделан ранний коммит, и при этом забыты какие-либо изменения, то можно их добавить
 
-    git commit -m "old commit"
-    git add file_name
-    git commit --amend -m "new commit"
+    git commit -m "<old-commit>"
+    git add <file-name>
+    git commit --amend -m "<new-commit>"
 
 Если был добавлен или изменён файл и при этом не требуется менять имя коммита
 
-    git commit --amend -no-edit
+    git commit --amend --no-edit
 
 
 ## Игнорирование файлов
@@ -211,29 +211,29 @@
 ## Удаление файлов
 Удаление из отслеживаемых файлов и директории
     
-    git rm file_name
+    git rm <file-name>
 
 Если требуется удалить из отслеживаемых файлов, но не удалять с файловой системы, то нужно использовать опцию `--cached`
 
-    git rm --cached file_name
+    git rm --cached <file-name>
 
 Если файл был изменён, но всё равно требуется его удалить, то добавляется опция `--force` или `-f`
 
-    git rm -f file_name
+    git rm -f <file-name>
 
 Если нужно посмотреть какие файлы удаляться, но не удалять их, то используется опция `--dry-run` или `-n`
 
-    git rm --dry-run file_name
+    git rm --dry-run <file-name>
 
 
 ## Перемещение или переименование файлов
 Переименование 
 
-    git mv old_file_name new_file_name
+    git mv <old-file-name> <new-file-name>
 
 Перемещение
 
-    git mv name path/to/file_name
+    git mv <file-name> <path-to-file-name>
 
 
 ## Просмотр истории коммитов
@@ -243,7 +243,7 @@
 
 Для того чтобы посмотреть только 3 последних коммита, нужно использовать опцию `-n`
 
-    git log -n 3
+    git log -n <count-commits>
 
 Для получения краткой характеристики используется опцию `--stat`
 
@@ -259,11 +259,11 @@
 
 Поиск по коммитам
     
-    git log --grep="pattern"
+    git log --grep="<pattern>"
 
 Показывает коммиты по определённому автору 
 
-    git log --author="KotDimos"
+    git log --author="<author>"
 
 Параметр `--pretty` определяет формат вывода информации 
 
@@ -279,7 +279,6 @@
 Так же можно определять свой вывод информации
 
     git log --pretty=format:"%h - %an, %ar : %s"
-
 
 Самые распространённые параметры форматирования
 
@@ -317,7 +316,7 @@
 
 Для просмотра что было изменено в определённом коммите 
 
-    git show hash_commit
+    git show <hash-commit>
 
 
 ## Работа с удалёнными репозиториями 
@@ -331,60 +330,60 @@
 
 Создание нового подключения к удаленному репозиторию
 
-    git remote add remote_server_name url
+    git remote add <remote-server-name> <url>
 
 Удаление подключения к удаленному репозиторию с именем
 
-    git remote rm remote_server_name
+    git remote rm <remote-server-name>
 
 Переименование удаленного подключения с имени
 
-    git remote rename old_name new_name
+    git remote rename <old-name> <new-name>
 
 Изменение адреса, для определённого имени
 
-    git remote set-url remote_server_name url
+    git remote set-url <remote-server-name> <url>
 
 Просмотр удалённого репозитория
 
-    git remote show remote_server_name
+    git remote show <remote-server-name>
 
 
 ## Отправка данных на сервер
 Отправка данных на удалённый сервер. Если имя удалённого сервера origin, при отправке можно не указывать. Так же если вы находитесь в ветке, которую требуется отправить, то  её можно тоже не указывать.
 
-    git push remote_server_name branch_name
+    git push <remote-server-name> <branch-name>
 
 Удаление удалённой ветки с сервера
 
-    git push remote_server_name --delete branch_name
+    git push <remote-server-name> --delete <branch-name>
 
 
 ## Скачивание данных с сервера
 Скачивание данных с удалённого репозитория. Так же если вы имеете имя сервера origin, его можно не указывать. И при если вы находитесь в ветке, в которую нужно скачать данные, то 
 
-    git pull remote_server_name branch_name
+    git pull <remote-server-name> <branch-name>
 
 При отправке данных `git push`, может произойти конфликт, что на удалённом репозитории уже были добавлены коммиты. Для этого нужно сначала скачать изменения, и только потом отправить их
 
-    git pull remote_server_name branch_name
-    git push remote_server_name branch_name
+    git pull <remote-server-name> <branch-name>
+    git push <remote-server-name> <branch-name>
 
 Если были локальные коммиты, и на удалённом сервере тоже были сделаны коммиты, то при обычном `pull`, будет сделан мердж-коммит. Чтобы избавиться от него, требуется использовать опцию `--rebase`. При этой опции локальный коммит окажется "поверх" новых коммитов с сервера, а мердж-коммита не будет.
 
  Если идёт командная работа, то лучше всегда использовать опцию `--rebase`, при взятии изменений.
 
-    git pull --rebase remote_server_name branch_name
+    git pull --rebase <remote-server-name> <branch-name>
 
 
 ## Загрузка коммитов с сервера
 Извлечение всех веток из репозитория.
 
-    git fetch remote_server_name
+    git fetch <remote-server-name>
 
 Извлечение определённой ветки.
 
-    git fetch remote_server_name branch_name
+    git fetch <remote-server-name> <branch-name>
 
 Извлечение всех зарегистрированных удаленных репозиториев и их веток
 
@@ -396,7 +395,7 @@
 
 Если после загрузки с определённого сервера появилась новая ветка, можно её переместить в свою ветку 
 
-    git checkout -b branch_name remote_server_name/branch_name
+    git checkout -b <branch-name> <remote-server-name>/<branch-name>
 
 
 ## Тэги
@@ -414,23 +413,23 @@
 
 Создание легковесных тегов
 
-    git tag tag_name
+    git tag <tag-name>
 
-Создание тегов с комментарием. Если не указать опцию `-m` то открывается редактор, и чтобы ввести тег.  
+Создание тегов с комментарием. Если не указать опцию `-m` то открывается редактор, и чтобы ввести тег.
 
-    git tag -a tag_name -m "comment"
+    git tag -a <tag-name> -m "<comment>"
 
 Просмотр определённого тега
 
-    git show tag_name
+    git show <tag-name>
 
 Так же тэг можно поставить на определённый коммит
 
-     git tag -a tag_name hash_commit -m "commit tag"
+     git tag -a <tag-name> <hash-commit> -m "<commit-tag>"
 
 Отправление тегов на удалённый сервер
 
-    git push origin tag_name
+    git push origin <tag-name>
 
 Отправка нескольких тегов сразу
 
@@ -438,7 +437,7 @@
 
 Удаление тега
 
-    git tag -d tag_name
+    git tag -d <tag-name>
 
 
 ## Псевдонимы
@@ -469,15 +468,15 @@
 
 Создать ветку
 
-    git branch new_branch
+    git branch <new-branch>
 
 Безопасное удаление ветки, если ветка не смёрджена, то она не будет удалена 
 
-    git branch -d branch_name
+    git branch -d <branch-name>
 
 Принудительное удаление ветки
 
-    git branch -D branch_name
+    git branch -D <branch-name>
 
 Показать больше текущей информации о ветках, показывает последний сделанный коммит
 
@@ -496,13 +495,13 @@
 ## Смена ветки 
 Команда для смены ветки
 
-    git checkout branch_name
+    git checkout <branch-name>
 
 Смена веток так же приводит к смене файлов в рабочей директории.
 
 Можно создать ветку и перейти в неё с помощью одной команды
 
-    git checkout -b new_branch
+    git checkout -b <new-branch>
 
 
 ## Слияние
@@ -510,18 +509,14 @@
 
 Требуется перейти в ветку которую будет происходить мердж и дальше произвести слияние ветки
 
-    git checkout master
-    git merge branch_name
+    git checkout <branch-name>
+    git merge <merged-branch-name>
 
 Конфликты при слиянии
 
 Процесс слияния далеко не всегда проходит гладко. Если в двух ветках, которые
-вы собираетесь слить, были внесли разные изменения в один и тот же файл, Git не
-сможет просто взять и объединить их.
-
-    git merge branch_name
-
-При слиянии появляется конфликт
+сливаются, были внесли разные изменения в один и тот же файл, Git не cможет просто взять и объединить их.
+При слиянии появляется конфликт.
 
 Чтобы посмотреть какие файлы имеют конфликт
 
@@ -547,11 +542,11 @@
 
 Если шла разработка ветки, и её требуется смержить в другую ветку, и при этом требуется сохранить ветку без перемотки, нужно использовать опцию `--no-ff`
 
-    git merge --no-ff branch_name
+    git merge --no-ff <branch-name>
 
 Если в ветке было много коммитов, и эти коммиты не требуется отображать в релизе. Можно применить флаг `--squash`. После этого потребуется указать общий коммит для слияния.
 
-    git merge --squash branch_name
+    git merge --squash <branch-name>
 
 
 ## Перемещение
@@ -559,28 +554,27 @@
 Сначала нужно перейти в ветку которую нужно переместить, а потом указать ветку в которую 
 перемещаем
 
-    git checkout feature
-    git rebase master
+    git checkout <rebased-branch-name>
+    git rebase <branch-name>
 
 Так же можно переместить одну ветку в другую, вне зависимости в какой ветке можно находиться 
 
-    git rebase master feature
+    git rebase <branch-name> <rebased-branch-name>
 
 При возникновении конфликта перемещения коммитов требуется разрешить конфликт и перейти на следующий коммит
 
     # разрешить конфликт
-    vim file_name
     # переход на следующий коммит
     git rebase --continue
 
-После перемещения ветки, так же можно выполнить перемотку основной ветки master/main
+После перемещения ветки, так же можно выполнить перемотку ветки от куда происходило перемещение.
 
-    git checkout master
-    git merge feature
+    git checkout <branch-name>
+    git merge <rebased-branch-name>
 
 И если ветка больше не нужна удалить
 
-    git branch -d feature
+    git branch -d <rebased-branch-name>
 
 При возникновении конфликта можно отменить перемещение
 
@@ -737,26 +731,26 @@ reset - универсальный инструмент для отмены из
 
 Отменить любой коммит можно по хэшу коммита, но может случиться конфликт, который потребуется решить самостоятельно
 
-    git revert hash_commit
+    git revert <hash-commit>
 
 Можно отменять несколько коммитов
 
-    git revert hash_commit_1..hash_commit_3
+    git revert <hash-commit-1>..<hash-commit-3>
 
 Если требуется посмотреть изменения предыдущих коммитов, но не делать коммит о отмене, можно воспользоваться флагом `-n`
 
-    git revert -n hash_commit
+    git revert -n <hash-commit>
 
 
 ## Перенос указателя ветки 
 Принудительный перенос ветки на определенный коммит
 
-    git branch -f branch_name hash_commit
+    git branch -f <branch-name> <hash-commit>
 
 Либо же если нужно перенести ветку на другую ветку, сначала указывается ветка которую переносим, потом на какую переносим. Так же вместо ветки можно указать коммит 
 
-     git checkout -B branch_name_1 branch_name_2
-     git checkout -B branch_name hash_commit
+     git checkout -B <branch-name-1> <branch-name-2>
+     git checkout -B <branch-name> <hash-commit>
 
 
 ## Очистка проекта от лишних файлов
@@ -772,19 +766,19 @@ reset - универсальный инструмент для отмены из
 ## Просмотр кто написал эту строку
 Для полного просмотра кто написал каждую строчку в файле
     
-    git blame file_name 
+    git blame <file-name> 
  
 Опция `-L` позволяет указать диапазон строк. 
 
-    git blame -L 1,5 file_name
+    git blame -L 1,5 <file-name>
 
 Опция `-e` позволяет отобразить адреса электронной почты авторов вместо имен пользователей.
 
-    git blame -e file_name
+    git blame -e <file-name>
 
 Опция `-M` позволяет находить перемещенные или скопированные строки внутри одного и того же файла. Указываться будет первоначальный автор строк.
 
-    git blame -M file_name
+    git blame -M <file-name>
 
 Опция `-C` позволяет находить строки, которые были перемещены или скопированы из других файлов.
 
@@ -794,15 +788,15 @@ reset - универсальный инструмент для отмены из
 ## Восстановление файла к определённому коммиту
 Если файл был удалён или изменён и требуется вернуть его к последнему коммиту
 
-    git restore file_name
+    git restore <file-name>
 
 Для возвращение файла к определённому коммиту 
 
-    git restore --source=hash_commit file_name
+    git restore --source=hash_commit <file-name>
 
 Чтобы убрать файл из отслеживаемых файлов, но не убирать его изменения
 
-    git restore --staged file_name
+    git restore --staged <file-name>
 
 
 ## Откладывание изменений 
@@ -818,19 +812,19 @@ reset - универсальный инструмент для отмены из
 
 Чтобы вернуть припрятанные изменения. При этом внесённые изменения будут оставаться в хранилище даже после возвращения.
 
-    git stash apply stash@{index}
+    git stash apply stash@{<index>}
 
 C опцией `--index`, команда попытается восстановить изменения в индексе.
 
-    git stash apply --index stash@{index}
+    git stash apply --index stash@{<index>}
 
 Для удаления изменения из хранилища 
 
-    git stash drop stash@{index}
+    git stash drop stash@{<index>}
 
 Для того чтобы вернуть изменения и сразу удалить из архива используется команда
 
-    git stash pop stash@{index}
+    git stash pop stash@{<index>}
 
 При опции `--keep-index` будут припрятаны изменения, но и при этом будут оставлены в индексе
 
@@ -847,17 +841,17 @@ C опцией `--index`, команда попытается восстанов
 
 Так же можно изменения вынести в новую ветку
 
-    git stash branch newbranch_name stash@{index}
+    git stash branch <new-branch-name> stash@{<index>}
 
 Удаление всех спрятанных изменений
 
-    git clear
+    git stash clear
 
 
 ## Копирование коммита
 Команда `cherry-pick` позволяет скопировать один коммит из другой ветки и вставить его в текущую. В качестве параметра передаётся идентификатор коммита в другой ветке.
 
-    git cherry-pick hash_commit
+    git cherry-pick <hash-commit>
 
 ## Подключение к репозиторию по ssh
 Сначала требуется сгенерировать ssh ключ. Сначала попросят ввести имя ssh ключа, его можно оставить по умолчанию. А дальше попросят ввести кодовую фразу, можно не вводить и просто нажать enter.
@@ -870,7 +864,7 @@ C опцией `--index`, команда попытается восстанов
 
 Если GitHub репозиторий изначально был подключен по web URL, то требуется его поменять на ssh URL
 
-    git remote set-url remote_server_name ssh_url
+    git remote set-url <remote-server-name> <ssh-url>
 
 ## Быстрый поиск плохого коммита
 Если в какой-то момент оказалось, что какие-то тесты не закпускаются или какая-то часть кода перестала правильно работать, но при этом было сделано довольно много коммитов, отыскать где была допущена ошибка может быть пробематично. Команда `bisect` позволяет найти очень быстро плохой коммит.
@@ -881,8 +875,8 @@ C опцией `--index`, команда попытается восстанов
 
 Дальше требуется указать хороший коммит и плохой коммит
 
-    git bisect bad hash_commit
-    git bisect good hash_commit
+    git bisect bad <hash-commit>
+    git bisect good <hash-commit>
 
 
 После этого, bisect разделит все коммиты, которые располагаются между ними пополам, переключится в новую (безымянную) ветку на этом срединном коммите и позволит вам проверить, работает ли в нём нужный код.
@@ -913,7 +907,7 @@ C опцией `--index`, команда попытается восстанов
 
 Вывод изменений определённой ветки
 
-    git reflog branch_name
+    git reflog <branch-name>
 
 Так же можно вывести в привычном формате reflog
 
@@ -921,11 +915,11 @@ C опцией `--index`, команда попытается восстанов
 
 Дальше по выведенным логам можно понять какие изменения были, и после этого вернуть изменения. После этой команды, он перейдет на этот коммит, и дальше уже можно будет решить как вернуть изменения.
 
-    git checkout hash_reflog
+    git checkout <hash-reflog>
 
 Так же можно эти изменения перенести в ветку для удобства.
 
-    git branch recover_branch hash_reflog
+    git branch <recover-branch> <hash-reflog>
 
 Данные о reflog остаются только локально, и при отправке на удалённый сервер они не будут сохранены на нём.
 
@@ -937,7 +931,7 @@ C опцией `--index`, команда попытается восстанов
 
 Добавление подмодуля
     
-    git submodule add url_repository
+    git submodule add <url-repository>
 
 При клонировании репозитория с подмодулями, требуется 
 
@@ -948,7 +942,7 @@ C опцией `--index`, команда попытается восстанов
 
 Но можно сделать это более просто, передать git clone флаг `--recurse-submodules`
 
-    git clone --recurse-submodules url_repository
+    git clone --recurse-submodules <url-repository>
 
 
 Команда git pull получает изменения для подмодулей, но она не обновляет подмодули. Поэтому нужно обновить подмодули, и лучше запускать submodule update с параметром `--init`, чтобы проинициализировать новые подмодули, а так же с параметром `--recursive`, чтобы обновить вложенные подмодули.
@@ -964,7 +958,7 @@ C опцией `--index`, команда попытается восстанов
 
 Если требуется чтобы подмодуль отслеживал только нужную ветку
     
-    git config -f .gitmodules submodule.Repoitory.branch branch_name
+    git config -f .gitmodules submodule.Repoitory.branch <branch-name>
 
 
 Отправка изменений не только из основного модуля, а так же из подмодуля
@@ -980,14 +974,4 @@ C опцией `--index`, команда попытается восстанов
 
     git config push.recurseSubmodules check
     git config push.recurseSubmodules on-demand
-
-
-
-
-
-
-<!-- 
-TODO LIST:
-git submodule
--->
 
