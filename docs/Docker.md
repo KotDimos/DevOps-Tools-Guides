@@ -31,6 +31,7 @@
 
 
 # Начало работы
+
 ## Установка
 [Начальная установка Docker](https://docs.docker.com/engine/install/) полностью описана для любой операционной системы.
 
@@ -70,11 +71,11 @@
 ## Клонирование образа
 Команда для клонирования образа.
 
-    docker pull name_image
+    docker pull <image-name>
 
 По стандарту будет качаться latest версия, но через двоеточие, можно указать версию image.
 
-    docker pull name_image:version
+    docker pull <image-name>:<version>
 
 Склонированный образ является неизменяемым.
 
@@ -82,7 +83,7 @@
 ## Поиск образа
 Для поиска образа используется команда `search`. Она будет выводить все найденные варианты с Docker Hub.
 
-    docker search name_image
+    docker search <image-name>
 
 Официальный сайт где можно найти все контейнеры и описание к ним [Docker Hub](https://hub.docker.com/search?q=).
 
@@ -110,102 +111,102 @@
 
 Для просмотра определенного контейнера, с полной его информацией.
 
-    docker inspect name_container
-    docker inspect id_container
+    docker inspect <container-name>
+    docker inspect <container-id>
 
 Для просмотра логов контейнера.
 
-    docker logs name_container
-    docker logs id_container
+    docker logs <container-name>
+    docker logs <container-id>
 
 
 ## Запуск контейнера
 Изначальный запуск контейнера. Если образ никогда не был установлен, то сначала Docker скачает образ, а потом запустит его.
 
-    docker run image:version
+    docker run <image-name>:<version>
 
 Для работы внутри контейнера требуется указать флаги -it (-i interactive, -t - tty).
 
-    docker run -it image:version
+    docker run -it <image-name>:<version>
 
 Для старта работы контейнера в фоновом режиме нужно использовать флаг -d (-d - detach).
 
-    docker run -d image:version
+    docker run -d <image-name>:<version>
 
 При обычном запуске генерируется рандомное имя контейнеры. Для того, чтобы дать самостоятельно имя требуется использовать флаг `--name`.
 
-    docker run -it --name name_container image:version
+    docker run -it --name <container-name> <image-name>:<version>
 
 Для того чтобы контейнеры взаимодействовали с основной машиной, нужно установить им порты, по которым они будут взаимодействовать.
 Для этого используется флаг `-p`, и после этого указывается порт вашей машины, и порт который будет в докер контейнере
 
-    docker run -d --name name_container -p 8080:8080 image:version
+    docker run -d --name <container-name> -p 8080:8080 <image-name>:<version>
 
 Для того чтобы передать контейнеру файлы основной машины, можно воспользоваться флагом `-v`,
 где требуется указать директорию, которая будет монтироваться, и потом куда она будет монтироваться.
 
-    docker run -it --name name_container -v /home/$USER:/home/$USER image:version
+    docker run -it --name <container-name> -v <path-to-host-directory>:<path-to-container-directory> <image-name>:<version>
 
 ## Повторный запуск контейнера
 Если использовать `run`, то Docker будет создавать новый контейнер.
 Но если требуется запустить контейнер, который уже когда-то использовался, используется команда `start`.
 Запускать контейнер можно как и по имени контейнера, так и по его id.
 
-    docker start -it name_container
-    docker start -it id_container
+    docker start -it <container-name>
+    docker start -it <container-id>
 
 
 ## Присоединение к контейнеру
 Команда, для присоединения к рабочему контейнеру.
 
-    docker attach name_container
-    docker attach id_container
+    docker attach <container-name>
+    docker attach <container-id>
 
 Для выхода из него обычно используется `exit`.
 
 ## Остановка контейнера
 Для остановки контейнера используется команда `stop`.
 
-    docker stop name_container
-    docker stop id_container
+    docker stop <container-name>
+    docker stop <container-id>
 
 Для остановки всех контейнеров.
 
-    docker stop $(docker ps -q)
+    docker stop $(docker ps -aq)
 
 Принудительное завершение контейнера.
 
-    docker kill name_container
-    docker kill id_container
+    docker kill <container-name>
+    docker kill <container-id>
 
 
 ## Удаление контейнера или образа
 Для удаления контейнера нужно использовать rm, удалять можно как и по имени контейнера, так и по его id.
 
-    docker rm id_container
-    docker rm name_container
+    docker rm <container-id>
+    docker rm <container-name>
 
 Если требуется удалить контейнеры по имени образа, то можно воспользоваться командой.
 
-    docker rm $(docker ps -a | awk '$2=="image_name" { print $1 }')
+    docker rm $(docker ps -a | awk '$2=="<image-name>" { print $1 }')
 
 Для удаления образа нужно использовать rmi, при этом все контейнеры основанные на нём должны быть удалены.
 
-    docker rmi name_image
+    docker rmi <image-name>
 
 
 ## Запуск команд в контейнере
 Для запуска команд используется команда `exec`.
 
-    docker exeс -it name_container command
-    docker exeс -it id_container command
+    docker exeс -it <container-name> command
+    docker exeс -it <container-id> command
 
 
 ## Сохранение изменений в контейнере
 Для сохранения изменений требуется его закоммитить
 
-    docker commit name_container username/name_container:vesion
-    docker commit id_container username/name_container:vesion
+    docker commit <container-name> <username>/<container-name>:<vesion>
+    docker commit <container-id> <username>/<container-name>:<vesion>
 
 
 ## Отправка данных на Docker Hub
@@ -225,7 +226,7 @@ Dockerfile является настройкой собственного кон
 
 Унаследование от другого image, образ с которого будет происходить старт.
 
-    FROM image_name:version
+    FROM <image-name>:<version>
 
     # example
     FROM ubuntu:20.04
@@ -346,7 +347,7 @@ Dockerfile является настройкой собственного кон
 
 Точка в конце указывает текущую директорию как место сборки. Так же можно указать путь до директории.
 
-    docker build -t username/name_container:vesion .
+    docker build -t <username>/<container-name>:<vesion> .
 
 Полная документация по [docker build](https://docs.docker.com/engine/reference/commandline/build/).
 
