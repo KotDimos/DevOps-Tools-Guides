@@ -229,6 +229,10 @@
 
     git ls-files --others --ignored --exclude-standard
 
+Можно создать глобальный gitignore.
+
+    git config --global core.excludesFile ~/.gitignore
+
 
 ## Удаление файлов
 Удаление из отслеживаемых файлов и директории.
