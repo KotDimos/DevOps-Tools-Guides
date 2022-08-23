@@ -275,6 +275,34 @@ ansible_port - порт подключения ssh.
       debug: msg="User admin is not logged on remote host"
       when: not 'admin' in who_check.stdout
 
+
+## Циклы
+Для циклов используется специальный параметр `loop`.
+
+В данном примере просто будет выведено сообщение с номерами массива prime.
+В параметр `loop`, просто передаётся массив, который требуется обойти,
+а дальше с помощью переменной `item` вызывается по одному элементу.
+
+    vars:
+      prime: [2, 3, 5, 7, 11]
+    tasks:
+      - name: Show first five prime numbers
+        debug:
+          msg: "{{ item }}"
+        loop: "{{ prime }}"
+
+Как один из реальных примеров применения циклов.
+Создание пользователей из списка.
+
+    - name: add users
+      ansible.builtin.user:
+        name: "{{ item.username }}"
+        password: "{{ item.pass }}"
+      loop:
+        - { username: user1, pass: password1 }
+        - { username: user2, pass: password2 }
+
+
 # Роли
 
 ## Создание роли
