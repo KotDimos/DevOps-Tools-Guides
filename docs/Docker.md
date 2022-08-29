@@ -228,21 +228,21 @@ Dockerfile является настройкой собственного кон
 
     FROM <image-name>:<version>
 
-    # example
+    # Пример
     FROM ubuntu:20.04
 
 Метаданные для образа.
 
     LABEL <key>=<value> [<key>=<value> ...]
 
-    # example
+    # Пример
     LABEL maintainer="user@example.org" version="1.1.1"
 
 Регистрация переменной окружения.
 
     ENV <key> <value>
 
-    # example
+    # Пример
     ENV LEVEL debug
 
 Указания рабочей директории, в какой директории будет находиться контейнер, от куда будет запуск команд.
@@ -250,7 +250,7 @@ Dockerfile является настройкой собственного кон
 
     WORKDIR <path>
 
-    # example
+    # Пример
     WORKDIR /home/user
 
 Копирования файлов из контекста в образ.
@@ -260,7 +260,7 @@ Dockerfile является настройкой собственного кон
     # <src> - файл или директория внутри build контекста
     # <dst> - файл или директория внутри контейнеры
 
-    # example
+    # Пример
     COPY . /home/user/
 
 Добавление файлов работают ровно так же как и COPY, но так же можно добавлять вместо локальных файлов файлы из интернета.
@@ -276,21 +276,21 @@ Dockerfile является настройкой собственного кон
 
     RUN <command>
 
-    # example
+    # Пример
     RUN apt-get update && apt-get install nginx
 
 Указание какая команда будет выполняться при старте контейнера.
 
     CMD <command>
 
-    # example
+    # Пример
     CMD /start.sh
 
 Аналог CMD - ENTRYPOINT.
 
     ENTRYPOINT <command>
 
-    # example
+    # Пример
     ENTRYPOINT /start.sh
 
 Указание точки монтирования томов внутри образа.
@@ -298,7 +298,7 @@ Dockerfile является настройкой собственного кон
     VOLUME <dst> [<dst> ...]
     # <dst> - директория монтирования для volume'a
 
-    # example
+    # Пример
     VOLUME /app /db /data
 
 Указание портов, которые слушает сервис в запущенном контейнере.
@@ -307,7 +307,7 @@ Dockerfile является настройкой собственного кон
     # <port> - порт сервиса внутри контейнера
     # <proto> - tcp или udp
 
-    # example
+    # Пример
     EXPOSE 8080/tcp 3389/udp
 
 Команда, которая запускается при сборке образа, на базе текущего.
@@ -457,11 +457,11 @@ Docker Compose используется для одновременного уп
 
 `build` - указание пути, где лежит Dockerfile для определенного проекта.
 
-    # example
+    # Пример
     # в данном случае будет искаться файл Dockerfile
     build: ./directory
 
-    # example
+    # Пример
     # в данном случае указан определённый Dockerfile
     build: ./directory/Dockerfile.new
 
@@ -475,7 +475,7 @@ Docker Compose используется для одновременного уп
     ports:
       - <host-port>:<container-port>
 
-    # example
+    # Пример
     ports:
       - 8080:80
       - "6060:6060/tcp"
@@ -486,7 +486,7 @@ Docker Compose используется для одновременного уп
     expose:
       - <port>
 
-    # example
+    # Пример
     expose:
       - "3000"
       - "8000"
@@ -505,7 +505,7 @@ env_file:
     # - комментарий
     VARIABLE=VALUE
 
-    # example
+    # Пример
     MY_VAR=value
 
 `environment` - Добавление переменные среды. Можно использовать либо массив, либо словарь.
@@ -543,7 +543,7 @@ env_file:
 
 `depends_on` - зависимости запуска и завершения работы между службами.
 
-    # example
+    # Пример
     services:
       name_1:
         depends_on:
