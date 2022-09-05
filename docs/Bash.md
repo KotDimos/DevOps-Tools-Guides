@@ -7,9 +7,9 @@
 > * [Переменные](#переменные)
 > * [Аргументы командной строки](#аргументы-командной-строки)
 > * [Зарезервированные переменные](#зарезервированные-переменные)
-> * [If](#if)
+> * [Условия](#условия)
 > * [Циклы](#циклы)
-> * [Case](#case)
+> * [Кейс](#Кейс)
 > * [Регулярные выражения](#регулярные-выражения)
 
 # Основы
@@ -128,7 +128,7 @@ $()
 * `$PATH` - путь поиска программ.
 
 
-## If
+## Условия
 Конструкция if.
 
     if CONDITION
@@ -199,6 +199,7 @@ $()
 * `STRING_1 = STRING_2` - True, если STRING_1 и STRING_2 равны.
 * `STRING_1 != STRING_2` - True, если STRING_1 и STRING_2 не равны.
 * `INTEGER_1 -eq INTEGER_2` - True, если INTEGER_1 и INTEGER_2 равны.
+* `INTEGER_1 -ne INTEGER_2` - True, если INTEGER_1 и INTEGER_2 не равны.
 * `INTEGER_1 -gt INTEGER_2` - True, если INTEGER_1 больше чем INTEGER_2.
 * `INTEGER_1 -lt INTEGER_2` - True, если INTEGER_1 меньше, чем INTEGER_2.
 * `INTEGER_1 -ge INTEGER_2` - True, если INTEGER_1 равно или больше, чем INTEGER_2.
@@ -247,7 +248,7 @@ $()
 В циклах можно использовать стандартные слова `break` и `continue`.
 
 
-## Case
+## Кейс
 Конструкция case.
 
     case EXPRESSION in
