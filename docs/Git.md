@@ -1127,6 +1127,7 @@ New SSH Key, в Title - ввести описание ключа, Key - ввес
     git config --global user.signingkey <hash-pub-key>
 
 Для загрузки открытого ключа на GitHub, нужно его экспортировать.
+Для записи его на GitHub нужно перейти в Setting, и далее SSH and GPG keys.
 
     gpg --export --armor <hash-key> > ~/gpg-key.pub
 
