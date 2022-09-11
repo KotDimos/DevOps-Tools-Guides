@@ -549,6 +549,11 @@
 
     git config --global core.editor nvim
 
+При команде git pull очень часто используется опция `--rebase`,
+настройка для автоматического использования этой опции.
+
+    git config --global pull.rebase true
+
 Автоматическое исправление опечаток, будет автоматически предложена команда с исправлением.
 
     git config --global help.autocorrect 1
