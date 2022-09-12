@@ -625,6 +625,16 @@
 
     git checkout -b <new-branch>
 
+Так же существует более новая команда для смены ветки `switch`.
+
+Смена ветки.
+
+    git switch <branch-name>
+
+Создать ветку и перейти в неё.
+
+    git switch -c <branch-name>
+
 
 ## Слияние
 
