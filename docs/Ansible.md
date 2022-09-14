@@ -65,6 +65,9 @@
 
 [Полная документация по ansible.cfg](https://docs.ansible.com/ansible/latest/reference_appendices/config.html)
 
+[Полный список параметров](https://docs.ansible.com/ansible/latest/reference_appendices/config.html#common-options).
+
+
 [Один из вариантов](https://docs.ansible.com/ansible/2.8/user_guide/playbooks_best_practices.html#alternative-directory-layout)
 правильной структуры директории.
 
