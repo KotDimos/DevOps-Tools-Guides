@@ -721,6 +721,16 @@
     git branch --merged
     git branch --no-merged
 
+*Примеры:*
+
+Создание ветки.
+
+    git branch feature
+
+Удаление ветки.
+
+    git branch -d feature
+
 
 ## Смена ветки
 
@@ -743,6 +753,20 @@
 Создать ветку и перейти в неё.
 
     git switch -c <branch-name>
+
+*Примеры:*
+
+Создание ветки.
+
+    git checkout -b feature
+
+Смена ветки.
+
+    git checkout master
+
+Перемещение на определённый коммит.
+
+    git checkout 977baff
 
 
 ## Слияние
