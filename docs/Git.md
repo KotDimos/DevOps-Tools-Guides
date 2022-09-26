@@ -509,8 +509,6 @@
 
     git pull <remote-server-name> <branch-name>
 
-Если ветки не существует на удалённом серевере используется флаг `--set-upstream`.
-
 Если нужно скачать текущую ветку и с сервера origin.
 
     git pull
