@@ -1674,4 +1674,4 @@ git grep принимает многие ключи, что и утилита gr
             skip_commit "$@";
 	    else
             git commit-tree "$@";
-	    fi' HEAD
+	    fi' -- --all
