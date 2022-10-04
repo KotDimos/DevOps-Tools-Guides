@@ -1914,7 +1914,7 @@ git grep принимает многие ключи, что и утилита gr
         GIT_COMMITTER_EMAIL=KotDimos@gmail.com
 	    ' b63eabe..feature 
 
-Где b63eabe коммит, а feature ветка.
+Где b63eabe коммит более старый от feature.
 
 
 ## Целостность объектов
