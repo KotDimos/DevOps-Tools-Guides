@@ -1904,6 +1904,18 @@ git grep принимает многие ключи, что и утилита gr
             git commit-tree "$@";
 	    fi' -- --all
 
+Если требуется изменить имя человека который создал и пушил коммит.
+Так же можно указать диапазон, а не все ветки.
+
+    git filter-branch --env-filter '
+        GIT_AUTHOR_NAME=KotDimos
+        GIT_AUTHOR_EMAIL=KotDimos@gmail.com
+        GIT_COMMITTER_NAME=KotDimos
+        GIT_COMMITTER_EMAIL=KotDimos@gmail.com
+	    ' b63eabe..feature 
+
+Где b63eabe коммит, а feature ветка.
+
 
 ## Целостность объектов
 
