@@ -736,9 +736,18 @@
 
 Создание ветки от определённой ветки.
 
-    git branch <new_branch> <base-branch>
+    git branch <new-branch> <base-branch>
 
-Безопасное удаление ветки, если ветка не смёрджена, то она не будет удалена.
+Если требуется указать ветку на определённый коммит.
+
+    git branch <branch-name> <hash-commit>
+
+Если ветка уже создана нужно использовать флаг `-f`.
+
+    git branch -f <branch-name> <hash-commit> 
+
+Безопасное удаление ветки,
+если ветка не смёрджена, то она не будет удалена.
 
     git branch -d <branch-name>
 
@@ -774,6 +783,9 @@
 
     git branch feature
 
+Создание ветки на определённый коммит.
+
+    git branch feature fd85dd7
 Удаление ветки.
 
     git branch -d feature
