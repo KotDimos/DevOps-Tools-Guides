@@ -1882,7 +1882,7 @@ git grep принимает многие ключи, что и утилита gr
 
     git for-each-ref --format="%(refname)" refs/original/ | xargs -n 1 git update-ref -d
 
-Один из вариантов отмены всех изменений при удалении файла.
+Один из вариантов отмены всех изменений.
 
     # Возращение на прошлую ветку
     git for-each-ref --format="update %(refname:lstrip=2) %(objectname)" refs/original/ | git update-ref --stdin
