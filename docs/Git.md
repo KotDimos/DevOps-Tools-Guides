@@ -1007,6 +1007,10 @@ Git не cможет просто взять и объединить их.
     git checkout master
     git merge feature_1
 
+Дальше стало так.
+
+     o---o---o---o---o---o---o---o---o  feature_1, master
+
 И если ветка feature_1 не нужна - удалить её.
 
     git branch -d feature_1
