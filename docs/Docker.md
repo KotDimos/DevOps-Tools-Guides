@@ -32,7 +32,7 @@
         * [EXPOSE](#expose)
         * [STOPSIGNAL](#stopsignal)
         * [USER](#user)
-        * [ARG](#ARG)
+        * [ARG](#arg)
         * [HEALTHCHECK](#healthcheck)
     * [Сборка проекта](#сборка-проекта)
     * [Уменьшение размера образа](#уменьшение-размера-образа)
@@ -57,12 +57,13 @@
 
 [Наверх](#содержание)
 
-Для Linux, чтобы каждый раз не нужно было писать sudo, нужно прописать:
+Для Linux, чтобы каждый раз не нужно было писать sudo.
 
     sudo groupadd docker
     sudo usermod -aG docker $USER
 
-И дальше нужно перезагрузить компьютер или перелогиниться, чтобы изменения вступили в силу.
+И дальше требуется перезагрузить компьютер или перелогиниться,
+чтобы изменения вступили в силу.
 
 Если требуется чтобы Docker автоматически загружался
 при старте операционной системы нужно указать это в настройках (systemd).
@@ -98,7 +99,8 @@
 
     docker pull <image-name>
 
-По стандарту будет качаться latest версия, но через двоеточие, можно указать версию image.
+По стандарту будет качаться latest версия,
+но через двоеточие, можно указать версию image.
 
     docker pull <image-name>:<version>
 
@@ -197,7 +199,8 @@
 Для того чтобы контейнеры взаимодействовали с основной машиной,
 нужно установить им порты, по которым они будут взаимодействовать.
 Для этого используется флаг `-p`,
-и после этого указывается порт вашей машины, и порт который будет в докер контейнере.
+и после этого указывается порт вашей машины,
+и порт который будет в докер контейнере.
 
     docker run -d -p 8080:8080 <image-name>:<version>
 
@@ -308,7 +311,7 @@
 
 [Наверх](#содержание)
 
-Для сохранения изменений требуется его закоммитить
+Для сохранения изменений требуется его закоммитить.
 
     docker commit <container-name> <username>/<container-name>:<vesion>
     docker commit <container-id> <username>/<container-name>:<vesion>
@@ -566,18 +569,29 @@ Dockerfile является настройкой собственного кон
 
 Сборка всего проекта в один контейнер.
 
-Опция `-t` или `--tag` указывает тег для контейнера.
+Опции.
 
-Опция `-f` или `--file` указывает путь до Dockerfile.
-
-Опция `--squash` указывает что все слои будут соединены в один.
+* `-t / --tag` - тег для контейнера.
+* `-f / --file` - путь до Dockerfile.
+* `--squash` - все слои будут соединены в один.
 
 Точка в конце указывает текущую директорию как место сборки.
 Так же можно указать путь до директории.
 
     docker build -t <username>/<container-name>:<vesion> .
 
-Полная документация по [docker build](https://docs.docker.com/engine/reference/commandline/build/).
+Полная документация по
+[docker build](https://docs.docker.com/engine/reference/commandline/build/).
+
+*Примеры:*
+
+Сборка контейнера с именем.
+
+    docker build -t kotdimos/my_nginx:1.23.1 .
+
+Сборка контейнера из определённого Dockerfile.
+
+    docker build -t kotdimos/my_nginx:1.23.1 -f Dockerfile.nginx .
 
 
 ## Логи контейнера
@@ -589,7 +603,6 @@ Dockerfile является настройкой собственного кон
     docker logs <container-name>
     docker logs <container-hash>
 
-
 ## Уменьшение размера образа
 
 [Наверх](#содержание)
@@ -597,15 +610,17 @@ Dockerfile является настройкой собственного кон
 1) Избегать установки лишних пакетов и упаковки лишних данных в образы.
 2) Использовать связанные команды для RUN инструкций.
 
-```
+``` Docker
 RUN command_1 && command_2 && command_3
 ```
 
 Или можно привести к более читаемому виду
 
-    RUN command_1 && \
-        command_2 && \
-        command_3
+``` Docker
+RUN command_1 && \
+    command_2 && \
+    command_3
+```
 
 3) Следить за последовательностью описания Dockerfile, избегать cache miss.
 4) Уменьшать количество слоёв.
@@ -697,30 +712,38 @@ Docker Compose используется для одновременного уп
 Если дополнительная версия не указана,
 по умолчанию используется 0, а не последняя дополнительная версия.
 
-    version: "3"
-    # is equivalent to
-    version: "3.0"
+``` Docker
+version: "3"
+# is equivalent to
+version: "3.0"
+```
 
 Дальше идёт перечисление сервисов. И в этих сервисах описываются служб.
 
-    services:
-      name_1:
-      name_2:
-      name_3:
+``` Docker
+services:
+  name_1:
+  name_2:
+  name_3:
+```
 
 `build` - указание пути, где лежит Dockerfile для определенного проекта.
 
 Будет искаться обычный Dockerfile.
 
-    build: ./directory
+``` Docker
+build: ./directory
+```
 
 В данном случае указан определённый Dockerfile
-j
+
     build: ./directory/Dockerfile.nginx
 
 `image` - указание определённого image.
 
-    image: image:version
+```
+image: image:version
+```
 
 `ports` - Открытие контейнерных портов.
 
@@ -729,9 +752,11 @@ j
 
 Пример.
 
-    ports:
-      - 8080:80
-      - "6060:6060/tcp"
+``` Docker
+ports:
+  - 8080:80
+  - "6060:6060/tcp"
+```
 
 `expose` - определяет порты, которые должны предоставлять из контейнера.
 
@@ -755,35 +780,40 @@ j
 
 env_file:
 
-    # - комментарий
     VARIABLE=VALUE
 
 Примеры.
 
-    MY_VAR=value
-    NGINX_VERSION=1.23.1
+``` Docker
+MY_VAR=value
+NGINX_VERSION=1.23.1
+```
 
 `environment` - Добавление переменные среды. Можно использовать либо массив, либо словарь.
 
-    environment:
-      SHOW: 'true'
-      PASSWORD: "PASSWORD"
+``` Docker
+environment:
+  SHOW: 'true'
+  PASSWORD: "PASSWORD"
 
-    environment:
-      - SHOW=true
-      - PASSWORD="password"
+environment:
+  - SHOW=true
+  - PASSWORD="password"
+```
 
 `volumes` - Указание точки монтирования томов внутри образа.
 
-    volumes:
-      # Абсолютный путь.
-      - /opt/data:/var/lib/mysql
+``` Docker
+volumes:
+  # Абсолютный путь.
+  - /opt/data:/var/lib/mysql
 
-      # Путь на хосте, относительно Compose файла.
-      - ./cache:/tmp/cache
+  # Путь на хосте, относительно Compose файла.
+  - ./cache:/tmp/cache
 
-      # Пользовательский путь.
-      - ~/configs:/etc/configs/:ro
+  # Пользовательский путь.
+  - ~/configs:/etc/configs/:ro
+```
 
 `container_name` - Собственное имя контейнера, вместо генерации по умолчанию.
 
@@ -798,15 +828,19 @@ env_file:
 
 `depends_on` - зависимости запуска и завершения работы между службами.
 
-    # Пример
-    services:
-      name_1:
-        depends_on:
-          - name_2
-          - name_3
-      name_2:
-      name_3:
+Служба name_1 зависит от name_2 и name_3,
+т.е. будет запускаться после них.
 
-    # служба name_1 зависит от name_2 и name_3
-    # т.е. будет запускаться после них
+``` Docker
+version "3.9"
+
+services:
+  name_1:
+    depends_on:
+      - name_2
+      - name_3
+  name_2:
+  name_3:
+```
+
 
