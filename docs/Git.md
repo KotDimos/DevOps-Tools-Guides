@@ -734,7 +734,7 @@
 
     git config --global credential.helper store
 
-Моя настройка для удобного отображения дерева комиитов.
+Моя настройка для удобного отображения дерева коммитов.
 
     git config --global alias.tree "log --all --decorate --oneline --graph"
 
