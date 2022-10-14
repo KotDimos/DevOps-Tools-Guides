@@ -303,8 +303,19 @@
 
 Для запуска команд используется команда `exec`.
 
-    docker exeс -it <container-name> command
-    docker exeс -it <container-id> command
+    docker exeс -it <container-name> <command>
+    docker exeс -it <container-id> <command>
+
+Если нужно запусить команду под определённым пользователем используется флаг `-u`.
+
+    dokcer exec -u <user-id> -it <container-id> <command> 
+    dokcer exec -u <user-name> -it <container-id> <command> 
+
+*Примеры:*
+
+Вход под root пользователем в контейнере.
+
+    docker exec -u 0 -it b6910f29ad52 /bin/bash 
 
 
 ## Сохранение изменений в контейнере
