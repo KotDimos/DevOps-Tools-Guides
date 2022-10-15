@@ -734,6 +734,11 @@
 
     git config --global credential.helper store
 
+Команда `git init` по стандарту создаёт ветку `master`,
+если требуется изменить создаваемую ветку по стандарту.
+
+    git config --global init.defaultBranch <branch-name>
+
 Моя настройка для удобного отображения дерева коммитов.
 
     git config --global alias.tree "log --all --decorate --oneline --graph"
