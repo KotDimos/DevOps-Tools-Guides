@@ -59,7 +59,7 @@
 * ansible.cfg - первоначальная настройка для ansible.
 * playbook-name.yml - ansible-playbook, в котором описаны задачи.
 * requirements.yml - файл с перечнем ansible-ролей, отдельно вынесенных задач.
-* inventorys - директория для инвентарей ansible.
+* inventories - директория для инвентарей ansible.
 * hosts - файл инвентаризации для рабочих серверов.
 
 Конфигурационный файл `ansible.cfg` может находиться в таких местах,
@@ -69,47 +69,47 @@
 * ~/.ansible.cfg — в домашнем каталоге.
 * /etc/ansible/ansible.cfg — в стандартной директории.
 
-[Полная документация по ansible.cfg](https://docs.ansible.com/ansible/latest/reference_appendices/config.html)
+[Полная документация по ansible.cfg](https://docs.ansible.com/ansible/latest/reference_appendices/config.html).
 
 [Полный список параметров](https://docs.ansible.com/ansible/latest/reference_appendices/config.html#common-options).
-
 
 [Один из вариантов](https://docs.ansible.com/ansible/2.8/user_guide/playbooks_best_practices.html#alternative-directory-layout)
 правильной структуры директории.
 
-    inventories/
-       production/
-          hosts                 # файл инвентаризации для рабочих серверов
-          group_vars/
-             group1.yml         # назначение переменных определенным группам
-             group2.yml
-          host_vars/
-             hostname1.yml      # назначение переменных определенным системам
-             hostname2.yml
+```
+inventories/
+   production/
+      hosts                 # файл инвентаризации для рабочих серверов
+      group_vars/
+         group1.yml         # назначение переменных определенным группам
+         group2.yml
+      host_vars/
+         hostname1.yml      # назначение переменных определенным системам
+         hostname2.yml
 
-       development/
-          hosts
-          group_vars/
-             group1.yml
-             group2.yml
-          host_vars/
-             hostname1.yml
-             hostname2.yml
+   development/
+      hosts
+      group_vars/
+         group1.yml
+         group2.yml
+      host_vars/
+         hostname1.yml
+         hostname2.yml
 
-    library/                    # если есть пользовательские модули (опционально)
-    module_utils/               # если какие-либо пользовательские утилиты для поддержки модулей (опционально)
-    filter_plugins/             # если какие-либо настраиваемые плагины фильтров (опционально)
+library/                    # если есть пользовательские модули (опционально)
+module_utils/               # если какие-либо пользовательские утилиты для поддержки модулей (опционально)
+filter_plugins/             # если какие-либо настраиваемые плагины фильтров (опционально)
 
-    site.yml                    # playbooks
-    webservers.yml
-    dbservers.yml
+site.yml                    # playbooks
+webservers.yml
+dbservers.yml
 
-    roles/
-        role1/
-        role2/
-        role3/
-        role4/
-
+roles/
+    role1/
+    role2/
+    role3/
+    role4/
+```
 
 ## Инвентарный файл
 
@@ -119,40 +119,65 @@
 
 `[ ]` - В скобки указывается название группы серверов.
 
-    # Пример
-    [dev]
+``` ini
+[dev]
+exemple1.com
+exemple2.com
 
-Частоиспользуемые ключи: 
+[prod]
+exemple3.com
+exemple4.com
+```
+
+Частоиспользуемые ключи:
 
 ansible_host - ip адрес.
 
-    # Пример
-    ansible_host=0.0.0.0
+*Пример:*
+
+``` yaml
+ansible_host=0.0.0.0
+```
 
 ansible_user - имя пользователя для подключения на удаленный сервер.
 
-    # Пример
-    ansible_user=user
+*Пример:*
+
+``` yaml
+ansible_user=user
+```
 
 ansible_pass - Пароль пользователя.
 
-    # Пример
-    ansible_pass=your_password
+*Пример:*
+
+``` yaml
+ansible_pass=your_password
+```
 
 ansible_sudo_pass - Пароль для подключения sudo пользователя.
 
-    # Пример
-    ansible_sudo_pass=your_password
+*Пример:*
+
+``` yaml
+ansible_sudo_pass=your_password
+```
 
 ansible_ssh_private_key_file - путь до закрытого ключа. Для входа без участия пароля.
 
-    # Пример
-    ansible_ssh_private_key_file=/home/user/.ssh/id_rsa
+*Пример:*
+
+``` yaml
+ansible_ssh_private_key_file=/home/user/.ssh/id_rsa
+```
 
 ansible_port - порт подключения ssh.
 
-    # Пример
-    ansible_port=1234
+*Пример:*
+
+``` yaml
+ansible_port=1234
+```
 
 Все ключи можно посмотреть в
 [документации](https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html#connecting-to-hosts-behavioral-inventory-parameters).
@@ -167,50 +192,68 @@ ansible_port - порт подключения ssh.
 
 Для инициализации или переопределения в плэйбуке переменных, используется `vars`.
 
-    vars:
-      <variable>: <value>
+``` yaml
+vars:
+  <variable>: <value>
+```
 
 Для использования переменных нужно заключать их в двойные фигурные скобки - `{{ }}`,
 и обязательно внутри скобочек переменная должна отделяться пробелами.
-Так же хорошей практикой считается, что заключать где используется переменная в двойные кавычки.
+Так же хорошей практикой считается,
+что заключать где используется переменная в двойные кавычки.
 
-    # Пример
-    file:
-      path: "{{ path_to_file }}"
+*Пример:*
 
-    file:
-      path: "~/directory/{{ file_name }}.txt"
+``` yaml
+file:
+  path: "{{ path_to_file }}"
+
+file:
+  path: "~/directory/{{ file_name }}.txt"
+```
 
 Переменные можно задавать в отдельном файле.
 
-    <variable>: <value>
+``` yaml
+<variable>: <value>
+```
 
 И для того чтобы подключить этот файл к плейбуку используется `vars_files`.
 
-    vars_files:
-      - <paht-to-file>
+``` yaml
+vars_files:
+  - <paht-to-file>
+```
 
 Переменные можно определять как лист.
 
-    list:
-     - var_1
-     - var_2
-     - var_3
+``` yaml
+list:
+ - var_1
+ - var_2
+ - var_3
+```
 
 Применение.
 
-    "{{ list[0] }}"
+``` yaml
+"{{ list[0] }}"
+```
 
 Переменные можно определять как словарь.
 
-    <dictionary>:
-      <variable_1>: <value_1>
-      <variable_2>: <value_2>
+``` yaml
+<dictionary>:
+  <variable_1>: <value_1>
+  <variable_2>: <value_2>
+```
 
 Применение.
 
-    dictionary['variable_1']
-    dictionary.variable_1
+``` yaml
+dictionary['variable_1']
+dictionary.variable_1
+```
 
 Переменные можно переопределять, и у них есть свои приоритеты.
 [Полный приоритет переменных](https://docs.ansible.com/ansible/latest/user_guide/playbooks_variables.html#ansible-variable-precedence).
@@ -226,13 +269,15 @@ ansible_port - порт подключения ssh.
 Пример на модуле [file](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/file_module.html).
 Модуль file нужен для создания/удаления файла.
 
-    - name: create file
-      file:
-        path: /home/user/file.txt
-        owner: user
-        group: user
-        mode: '0777'
-        state: touch
+``` yaml
+- name: create file
+  file:
+    path: /home/user/file.txt
+    owner: user
+    group: user
+    mode: '0777'
+    state: touch
+```
 
 * `name` - описание модуля.
 * `file` - имя модуля, в версиях выше 2.9 он называется ansible.builtin.file.
@@ -251,9 +296,9 @@ ansible_port - порт подключения ssh.
 их нужно использовать только в самый последний момент, когда нет вообще такого модуля.
 Как пример, когда вышла новое приложение, и под неё ещё не написали модули.
 
-`Shell` -  запуск /bin/sh.
+`shell` - запуск /bin/sh.
 
-`Command` - команды не будут обрабатываться через оболочку, поэтому такие переменные, как $HOME,
+`command` - команды не будут обрабатываться через оболочку, поэтому такие переменные, как $HOME,
 и такие операции, как <, >, |, ; и & не будут работать.
 
 Почему лучше использовать модули, а не команды shell.
@@ -283,26 +328,30 @@ ansible_port - порт подключения ssh.
 
 Для проверки вхождения символа или подстроки в строку используются операторы `in` и `not`.
 
+*Пример:*
 
-Пример:
+Проверка семейства ОС.
 
-    # Проверка семейства ОС
-    - name: Check OS family
-      debug: msg="This is Debian"
-      when: ansible_os_family == "Debian"
+``` yaml
+- name: Check OS family
+  debug: msg="This is Debian"
+  when: ansible_os_family == "Debian"
+```
 
 Так же можно сохранить результат выполнения модуля в переменную.
 Для этого используется параметр `register`.
 
-Пример:
+*Пример:*
 
-    - name: Check if admin logged
-      command: who
-      register: who_check
+``` yaml
+- name: Check if admin logged
+  command: who
+  register: who_check
 
-    - name: Print message if user admin not logged
-      debug: msg="User admin is not logged on remote host"
-      when: not 'admin' in who_check.stdout
+- name: Print message if user admin not logged
+  debug: msg="User admin is not logged on remote host"
+  when: not 'admin' in who_check.stdout
+```
 
 
 ## Циклы
@@ -315,25 +364,28 @@ ansible_port - порт подключения ssh.
 В параметр `loop`, просто передаётся массив, который требуется обойти,
 а дальше с помощью переменной `item` вызывается по одному элементу.
 
-    vars:
-      prime: [2, 3, 5, 7, 11]
-    tasks:
-      - name: Show first five prime numbers
-        debug:
-          msg: "{{ item }}"
-        loop: "{{ prime }}"
+``` yaml
+vars:
+  prime: [2, 3, 5, 7, 11]
+tasks:
+  - name: Show first five prime numbers
+    debug:
+      msg: "{{ item }}"
+    loop: "{{ prime }}"
+```
 
 Как один из реальных примеров применения циклов.
 Создание пользователей из списка.
 
-    - name: add users
-      ansible.builtin.user:
-        name: "{{ item.username }}"
-        password: "{{ item.pass }}"
-      loop:
-        - { username: user1, pass: password1 }
-        - { username: user2, pass: password2 }
-
+``` yaml
+- name: add users
+  ansible.builtin.user:
+    name: "{{ item.username }}"
+    password: "{{ item.pass }}"
+  loop:
+    - { username: user1, pass: password1 }
+    - { username: user2, pass: password2 }
+```
 
 # Роли
 
@@ -365,4 +417,4 @@ ansible_port - порт подключения ssh.
 
 [Наверх](#содержание)
 
-[Специальные переменные от ansible](https://docs.ansible.com/ansible/latest/reference_appendices/special_variables.html)
+[Специальные переменные от ansible](https://docs.ansible.com/ansible/latest/reference_appendices/special_variables.html).
