@@ -312,6 +312,14 @@
 
     git commit --amend --no-edit
 
+Для создания коммита с определённой датой используется флаг `--date`.
+
+    git commit --date="<your-date>"
+
+Для создания коммита с определённым автором используется флаг `--autor`.
+
+    git commit --author="Name <exemple_email@exemple.com>"
+
 *Примеры:*
 
 Коммит файла.
@@ -323,6 +331,10 @@
 
     git add file.txt
     git commit --amend --no-edit
+
+Создание коммита с определённой датой (27.10.2022 16:31:15).
+
+    git commit --date="2022-10-27 16:31:15"
 
 
 ## Игнорирование файлов
