@@ -11,3 +11,10 @@
 [Bash](docs/Bash.md) - язык сценариев оболочки, для написания скриптов.
 
 [Vim](docs/Vim.md) - удобный текстовый редактор.
+
+
+# Ссылки для удобного просмотра
+
+[GitBook](https://kotdimos.gitbook.io/devops_tools_guides/)
+
+[GitHub Pages](https://kotdimos.github.io/DevOps_Tools_Guides/)
