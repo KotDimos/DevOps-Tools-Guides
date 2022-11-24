@@ -2011,7 +2011,7 @@ Git хранит все изменения, которые происходил�
 * GIT_AUTHOR_DATE
 * GIT_COMMITTER_NAME
 * GIT_COMMITTER_EMAIL
-* GIT_COMMITTER_DAT
+* GIT_COMMITTER_DATE
 
 При запуске `filter-branch`,
 для всех веток, которые эта команда затронет,
