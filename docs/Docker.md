@@ -41,6 +41,12 @@
 
 * [Docker Compose](#docker-compose)
     * [Команды](#команды)
+        * [Сборка проекта Docker Compose](#сборка-проекта-docker-compose)
+        * [Запуск проекта Docker Compose](#запуск-проекта-docker-compose)
+        * [Остановка проекта Docker Compose](#остановка-проекта-docker-compose)
+        * [Просмотр состояния Docker Compose](#просмотр-состояния-docker-compose)
+        * [Выполнение команды внутри контейнера Docker Compose](#выполнение-команды-внутри-контейнера-docker-compose)
+        * [Прочие команды Docker Compose](#прочие-команды-docker-compose)
     * [Docker Compose file](#docker-compose-file)
 
 
@@ -717,7 +723,7 @@ Docker Compose используется для одновременного уп
 Этот инструмент предлагает те же возможности,
 что и Docker, но позволяет работать с более сложными приложениями.
 
-Описывается всё в файле docker-compose.yml.
+Описывается всё в файле `docker-compose.yml`.
 Это файл, который будет содержать инструкции, необходимые для запуска и настройки сервисов.
 Обычно он хранится в корневой директории проекта.
 
@@ -726,33 +732,82 @@ Docker Compose используется для одновременного уп
 
 [Наверх](#содержание)
 
+### Сборка проекта Docker Compose
+
+[Наверх](#содержание)
+
 Сборка проекта.
 
     docker-compose build
 
-Запуск проекта. Ключ `-d` означает, что запуск будет в фоновом режиме.
+Не использовать старых кэш.
+
+    docker-compose build --no-cache
+
+Если файл с инструкциями назвается не `docker-compose.yml`,
+то добавляется флаг `-f`.
+К другим командам применяется ровно так же.
+
+    docker-compose -f docker-compose-prod.yml build
+
+### Запуск проекта Docker Compose
+
+[Наверх](#содержание)
+
+Запуск проекта.
+
+    docker-compose up
+
+Запустить проект и дополнительно собрать его.
+
+    docker-compose up --build
+
+Запустить проект в фоновом режиме.
 
     docker-compose up -d
 
+
+### Остановка проекта Docker Compose
+
+[Наверх](#содержание)
+
 Остановка проекта.
+
+    docker-compose stop
+
+Остановить проект и удалить контейнеры.
 
     docker-compose down
 
+
+### Просмотр состояния Docker Compose
+
+[Наверх](#содержание)
+
 Посмотр логов сервиса.
 
-    docker-compose logs -f [service-name]
+    docker-compose logs -f <service-name>
 
 Вывод списка контейнеров.
 
     docker-compose ps
 
-Выполнение команды в контейнере.
-
-    docker-compose exec [service-name] [command]
-
 Показать список образов.
 
     docker-compose images
+
+### Выполнение команды внутри контейнера Docker Compose
+
+[Наверх](#содержание)
+
+Выполнение команды в контейнере.
+
+    docker-compose exec <service-name> <command>
+
+
+### Прочие команды Docker Compose
+
+[Наверх](#содержание)
 
 Справка по всем командам.
 
