@@ -315,14 +315,18 @@
 
 Если нужно запусить команду под определённым пользователем используется флаг `-u`.
 
-    dokcer exec -u <user-id> -it <container-id> <command> 
-    dokcer exec -u <user-name> -it <container-id> <command> 
+    docker exec -u <user-id> -it <container-id> <command>
+    docker exec -u <user-name> -it <container-id> <command>
 
 *Примеры:*
 
+Просмотреть корректность заполнения конфига в nginx.
+
+    docker exec -it 17911b46528e nginx -t
+
 Вход под root пользователем в контейнере.
 
-    docker exec -u 0 -it b6910f29ad52 /bin/bash 
+    docker exec -u 0 -it b6910f29ad52 /bin/bash
 
 
 ## Сохранение изменений в контейнере
@@ -613,7 +617,6 @@ Dockerfile является настройкой собственного кон
 
 
 ## Логи контейнера
-
 [Наверх](#содержание)
 
 Для просмотра логов, которые отдаёт контейнер есть атрибут `logs`.
