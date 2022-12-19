@@ -95,6 +95,9 @@
     docker rm $(docker ps -aq)
     docker rmi hello-world
 
+Для Windows и Mac OS систем, требуется установить дополнительно Docker Desktop c
+[официального сайта](https://www.docker.com/products/docker-desktop/).
+
 
 # Основные инструменты
 
@@ -753,6 +756,7 @@ Docker Compose используется для одновременного уп
 
     docker-compose -f docker-compose-prod.yml build
 
+
 ### Запуск проекта Docker Compose
 
 [Наверх](#содержание)
@@ -798,6 +802,7 @@ Docker Compose используется для одновременного уп
 Показать список образов.
 
     docker-compose images
+
 
 ### Выполнение команды внутри контейнера Docker Compose
 
