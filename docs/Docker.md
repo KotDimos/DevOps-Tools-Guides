@@ -733,6 +733,20 @@ Docker Compose используется для одновременного уп
 Это файл, который будет содержать инструкции, необходимые для запуска и настройки сервисов.
 Обычно он хранится в корневой директории проекта.
 
+## Установка
+
+Один из вариантов установки docker compose, это установка Docker Desktop.
+Он будет содержать в себе и docker и docker-compose.
+Ссылка на установку [Docker Desktop](https://www.docker.com/products/docker-desktop/).
+
+Можно установить `docker-compose` используя пакетный менеждер дистрибутива.
+Это отдельный файл, который является обёрткой над docker.
+
+Так же существует специальный плагин для docker - `docker-compose-plugin`.
+Он позволяет использовать команду не `docker-compose`, а `docker compose`,
+команда будет являться не отдельным файлом, а расширением docker.
+[Более подробная инструкция по установке](https://docs.docker.com/compose/install/linux/).
+
 
 ## Команды
 
@@ -744,17 +758,17 @@ Docker Compose используется для одновременного уп
 
 Сборка проекта.
 
-    docker-compose build
+    docker compose build
 
 Не использовать старых кэш.
 
-    docker-compose build --no-cache
+    docker compose build --no-cache
 
 Если файл с инструкциями назвается не `docker-compose.yml`,
 то добавляется флаг `-f`.
 К другим командам применяется ровно так же.
 
-    docker-compose -f docker-compose-prod.yml build
+    docker compose -f docker-compose-prod.yml build
 
 
 ### Запуск проекта Docker Compose
@@ -763,15 +777,15 @@ Docker Compose используется для одновременного уп
 
 Запуск проекта.
 
-    docker-compose up
+    docker compose up
 
 Запустить проект и дополнительно собрать его.
 
-    docker-compose up --build
+    docker compose up --build
 
 Запустить проект в фоновом режиме.
 
-    docker-compose up -d
+    docker compose up -d
 
 
 ### Остановка проекта Docker Compose
@@ -780,11 +794,11 @@ Docker Compose используется для одновременного уп
 
 Остановка проекта.
 
-    docker-compose stop
+    docker compose stop
 
 Остановить проект и удалить контейнеры.
 
-    docker-compose down
+    docker compose down
 
 
 ### Просмотр состояния Docker Compose
@@ -793,15 +807,15 @@ Docker Compose используется для одновременного уп
 
 Посмотр логов сервиса.
 
-    docker-compose logs -f <service-name>
+    docker compose logs -f <service-name>
 
 Вывод списка контейнеров.
 
-    docker-compose ps
+    docker compose ps
 
 Показать список образов.
 
-    docker-compose images
+    docker compose images
 
 
 ### Выполнение команды внутри контейнера Docker Compose
@@ -810,7 +824,7 @@ Docker Compose используется для одновременного уп
 
 Выполнение команды в контейнере.
 
-    docker-compose exec <service-name> <command>
+    docker compose exec <service-name> <command>
 
 
 ### Прочие команды Docker Compose
@@ -819,7 +833,7 @@ Docker Compose используется для одновременного уп
 
 Справка по всем командам.
 
-    docker-compose --help
+    docker compose --help
 
 
 ## Docker Compose file
@@ -830,6 +844,10 @@ Docker Compose используется для одновременного уп
 
 [Документация по 3, последней версии](https://docs.docker.com/compose/compose-file/compose-file-v3/).
 
+### version
+
+[Наверх](#содержание)
+
 В начале файла указывается версия compose.
 В различных версиях добавлены/удалены/изменены службы.
 Все различные
@@ -837,69 +855,136 @@ Docker Compose используется для одновременного уп
 
     version: "3.9"
 
-При указании используемой версии файла Compose,
+При указании используемой версии файла compose,
 при версиях 2 и 3, нужно указать как старший, так и дополнительный номера.
 Если дополнительная версия не указана,
 по умолчанию используется 0, а не последняя дополнительная версия.
 
 ``` Docker
 version: "3"
-# is equivalent to
+# эквивалент вот этому
 version: "3.0"
 ```
 
-Дальше идёт перечисление сервисов. И в этих сервисах описываются служб.
+
+### services
+
+[Наверх](#содержание)
+
+`services` - в данном блоке описывается список сервисов.
 
 ``` Docker
 services:
   name_1:
+    ...
   name_2:
+    ...
   name_3:
+    ...
 ```
 
-`build` - указание пути, где лежит Dockerfile для определенного проекта.
 
-Будет искаться обычный Dockerfile.
+### build
 
-``` Docker
-build: ./directory
-```
+[Наверх](#содержание)
 
-В данном случае указан определённый Dockerfile
+`build` - указание пути, где лежит Dockerfile для определенного проекта
+и передача определённых аргументов.
 
-    build: ./directory/Dockerfile.nginx
+*Примеры:*
 
-`image` - указание определённого image.
+В текущей директории будет искаться файл `Dockerfile` и запускаться.
 
-```
-image: image:version
-```
+    build: .
+
+Будет запущен `Dockerfile.nginx` в директории `nginx`.
+
+    build: ./nginx/Dockerfile.nginx
+
+Так же можно это разбить.
+
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile.nginx
+
+Для передачи аргументов используется `args`.
+
+    build:
+      context: ./nginx
+      args:
+        ARG1: arg1
+        ARG2: arg2
+
+Либо такой вариант.
+
+    build:
+      context: ./nginx
+      args:
+        - ARG1=arg1
+        - ARG2=arg2
+
+
+### image
+
+[Наверх](#содержание)
+
+`image` - образ с которого будет запускаться контейнер.
+
+    image: image:version
+
+*Примеры:*
+
+Запуск от определённого image.
+
+    image: nginx:1.23.2
+
+
+### ports
+
+[Наверх](#содержание)
 
 `ports` - Открытие контейнерных портов.
 
     ports:
       - <host-port>:<container-port>
 
-Пример.
+*Примеры.*
 
-``` Docker
-ports:
-  - 8080:80
-  - "6060:6060/tcp"
-```
+Открытие порта.
 
-`expose` - определяет порты, которые должны предоставлять из контейнера.
+    ports:
+      - 80:80
+
+Открытие нескольких портов.
+
+    ports:
+      - 8080:80
+      - 6060:6060
+
+
+### expose
+
+[Наверх](#содержание)
+
+`expose` - открывает порты, не окрывая из на хостовой машине.
+Будут доступны только связным службам.
 
     expose:
       - <port>
 
-Пример.
+*Пример.*
 
     expose:
       - "3000"
       - "8000"
 
-`env_file` - Добавление переменные среды из файла. Может быть одним значением или списком.
+
+### env_file
+
+[Наверх](#содержание)
+
+`env_file` - Добавление переменные среды из файла.
+Может быть одним значением или списком.
 
     env_file: <env-file>
 
@@ -908,69 +993,157 @@ ports:
       - <env-file-2>
       - <env-file-3>
 
-env_file:
 
     VARIABLE=VALUE
 
-Примеры.
+*Примеры.*
 
-``` Docker
-MY_VAR=value
-NGINX_VERSION=1.23.1
-```
+Указания файлов.
 
-`environment` - Добавление переменные среды. Можно использовать либо массив, либо словарь.
+    env_file:
+      - .env
+      - nginx/.env
 
-``` Docker
-environment:
-  SHOW: 'true'
-  PASSWORD: "PASSWORD"
+Сам env файл.
 
-environment:
-  - SHOW=true
-  - PASSWORD="password"
-```
+    MY_VAR=value
+    NGINX_VERSION=1.23.1
+
+
+### environment
+
+[Наверх](#содержание)
+
+`environment` - Добавление переменных для среды.
+
+*Примеры:*
+
+Указания переменных.
+
+    environment:
+      SHOW: 'true'
+      PASSWORD: "PASSWORD"
+
+Указания переменных в другом формате yml.
+
+    environment:
+      - SHOW=true
+      - PASSWORD="password"
+
+
+### volumes
+
+[Наверх](#содержание)
 
 `volumes` - Указание точки монтирования томов внутри образа.
 
-``` Docker
-volumes:
-  # Абсолютный путь.
-  - /opt/data:/var/lib/mysql
+*Примеры:*
 
-  # Путь на хосте, относительно Compose файла.
-  - ./cache:/tmp/cache
+Монтирование по абсолютному пути.
 
-  # Пользовательский путь.
-  - ~/configs:/etc/configs/:ro
-```
+    volumes:
+      - /opt/data:/var/lib/mysql
+
+Монтирование относительно compose файла.
+
+      - ./cache:/tmp/cache
+
+Так же можно указывать именнованный том.
+
+Сначала требуется создать.
+В конце после всех services создаются все нужные volumes.
+
+    volumes:
+      name_volume:
+        name: name_volume
+
+И дальше в нужном сервисе вставляется нужный volume.
+
+    volumes:
+      - name_volume:/var/lib/mysql
+
+Все созданые volumes хранятся по пути `/var/lib/docker/volumes`.
+
+
+### container_name
+
+[Наверх](#содержание)
 
 `container_name` - Собственное имя контейнера, вместо генерации по умолчанию.
 
     container_name: <container-name>
 
+*Пример.*
+
+    сontainer_name: nginx_container
+
+
+### entrypoint
+
+[Наверх](#содержание)
+
 `entrypoint` - Переопределение начального запуска.
 
     entrypoint: <command>
 
-    # Так же можно задать её списком
+    # Так же можно задать списком
     entrypoint: ["<command>", "<arg1>", "<arg2>"]
 
+*Примеры:*
+
+    entrypoint: "nginx -g daemon off;"
+    entrypoint: ["nginx", "-g", "daemon off;"]
+
+### command
+
+[Наверх](#содержание)
+
+`command` - Переопределение команды для запуска.
+
+    command: "<command>"
+
+    # Так же можно задать списком
+    command: ["<command>", "<arg1>", "<arg2>"]
+
+*Примеры:*
+
+    command: "nginx -g daemon off;"
+    command: ["nginx", "-g", "daemon off;"]
+
+
+### depends_on
+
+[Наверх](#содержание)
+
 `depends_on` - зависимости запуска и завершения работы между службами.
+
+
+*Примеры:*
 
 Служба name_1 зависит от name_2 и name_3,
 т.е. будет запускаться после них.
 
-``` Docker
-version "3.9"
+    version "3.9"
 
-services:
-  name_1:
-    depends_on:
-      - name_2
-      - name_3
-  name_2:
-  name_3:
-```
+    services:
+      name_1:
+        depends_on:
+          - name_2
+          - name_3
+      name_2:
+        ...
+      name_3:
+        ...
 
+
+### restart
+
+`restart` - Политика перезапуска контейнера.
+
+Существуют 4 варианта:
+* `no` - не перезапускает контейнер (по умолчанию).
+* `always` - контейнер будет всегда перезапускается.
+* `on-failure` - при ошибке будет перезапускаться контейнер.
+* `unless-stopped` - всегда перезапускается контейнер,
+если контейнер не остановлен (вручную или другим образом).
 
