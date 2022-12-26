@@ -48,6 +48,20 @@
         * [Выполнение команды внутри контейнера Docker Compose](#выполнение-команды-внутри-контейнера-docker-compose)
         * [Прочие команды Docker Compose](#прочие-команды-docker-compose)
     * [Docker Compose file](#docker-compose-file)
+        * [version](#version)
+        * [services](#services)
+        * [build](#build)
+        * [image](#image)
+        * [ports](#ports)
+        * [expose](#expose)
+        * [env_file](#env_file)
+        * [environment](#environment)
+        * [volumes](#volumes)
+        * [container_name](#container_name)
+        * [entrypoint](#entrypoint)
+        * [command](#command)
+        * [depends_on](#depends_on)
+        * [restart](#restart)
 
 
 # Начало работы
@@ -1147,3 +1161,6 @@ services:
 * `unless-stopped` - всегда перезапускается контейнер,
 если контейнер не остановлен (вручную или другим образом).
 
+*Примеры:*
+
+    restart: on-failure
