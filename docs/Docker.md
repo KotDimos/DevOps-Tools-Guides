@@ -1090,7 +1090,6 @@ services:
 
     volumes:
       name_volume:
-        name: name_volume
 
 И дальше в нужном сервисе вставляется нужный volume.
 
@@ -1098,6 +1097,36 @@ services:
       - name_volume:/var/lib/mysql
 
 Все созданые volumes хранятся по пути `/var/lib/docker/volumes`.
+
+У volume есть параметры, которые монжо конфигурировать его.
+
+`name` - указание имени volume, с которым он будет создоваться.
+
+`external` - если стоит true, значит он не будет создавать новый volume,
+а будет искать готовый.
+Если не указывается параметр `name`, тогда требуется указать его в external.
+
+*Примеры:*
+
+Указание имени volume.
+
+    volumes:
+      mysql_database:
+        name: mysql_database
+
+Использовать готовый volume.
+
+    volumes:
+      mysql_database:
+        external:
+          name: mysql_database
+
+Использование external вместе с name.
+
+    volumes:
+      mysql_database:
+        external: true
+        name: mysql_database
 
 
 ### container_name
