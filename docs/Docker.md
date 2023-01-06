@@ -799,7 +799,7 @@ Docker Compose используется для одновременного уп
 
     docker compose build
 
-Не использовать старых кэш.
+Не использовать старые кэши.
 
     docker compose build --no-cache
 
@@ -807,7 +807,7 @@ Docker Compose используется для одновременного уп
 то добавляется флаг `-f`.
 К другим командам применяется ровно так же.
 
-    docker compose -f docker-compose-prod.yml build
+    docker compose -f docker-compose-new.yml build
 
 
 ### Запуск проекта Docker Compose
