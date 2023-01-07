@@ -64,6 +64,7 @@
         * [command](#command)
         * [depends_on](#depends_on)
         * [restart](#restart)
+        * [healthcheck](#healthcheck)
 
 
 # Начало работы
@@ -776,6 +777,8 @@ Docker Compose используется для одновременного уп
 
 ## Установка
 
+[Наверх](#содержание)
+
 Один из вариантов установки docker compose, это установка Docker Desktop.
 Он будет содержать в себе и docker и docker-compose.
 Ссылка на установку [Docker Desktop](https://www.docker.com/products/docker-desktop/).
@@ -1187,7 +1190,6 @@ services:
 
 `depends_on` - зависимости запуска и завершения работы между службами.
 
-
 *Примеры:*
 
 Служба name_1 зависит от name_2 и name_3,
@@ -1207,6 +1209,8 @@ services:
 
 
 ### restart
+
+[Наверх](#содержание)
 
 `restart` - Политика перезапуска контейнера.
 
