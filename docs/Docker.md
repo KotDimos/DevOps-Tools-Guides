@@ -208,15 +208,38 @@
 
     docker ps -q
 
-Для просмотра определенного контейнера, с полной его информацией.
-
-    docker inspect <container-name>
-    docker inspect <container-id>
-
 Для просмотра логов контейнера.
 
     docker logs <container-name>
     docker logs <container-id>
+
+
+## Просмотр информации об объекте
+
+[Наверх](#содержание)
+
+`inspect` - позволяет просмотреть низкоуровневую информацию
+об различных объектах в docker.
+
+    docker inspect <object>
+
+*Примеры:*
+
+Просмотреть данные контейнера.
+
+    docker inspect 852e9526a135
+
+Просмотреть данные образа.
+
+    docker inspect mysql:8.0.31
+
+Просмотреть данные network.
+
+    docker inspect network_deafault
+
+Просмотреть данные volume.
+
+    docker inspect database
 
 
 ## Запуск контейнера
