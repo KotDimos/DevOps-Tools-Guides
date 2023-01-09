@@ -8,7 +8,7 @@
 
 * [Словарь](#словарь)
 
-* [Основные инструменты](#основные-инструменты)
+* [Команды Docker](#команды-docker)
     * [Клонирование образа (pull)](#клонирование-образа)
     * [Поиск образа (search)](#просмотр-контейнеров)
     * [Просмотр контейнеров (ps, inspect, logs)](#просмотр-контейнеров)
@@ -20,51 +20,54 @@
     * [Запуск команд в контейнере (exec)](#запуск-команд-в-контейнере)
     * [Сохранение изменений в контейнере (commit)](#сохранение-изменений-в-контейнере)
     * [Отправка данных на Docker Hub (login, push)](#отправка-данных-на-docker-hub)
-    * [Dockerfile](#dockerfile)
-        * [FROM](#from)
-        * [LABEL](#label)
-        * [ENV](#env)
-        * [WORKDIR](#workdir)
-        * [COPY](#copy)
-        * [ADD](#add)
-        * [RUN](#run)
-        * [CMD](#cmd)
-        * [ENTRYPOINT](#entrypoint)
-        * [VOLUME](#volume)
-        * [EXPOSE](#expose)
-        * [STOPSIGNAL](#stopsignal)
-        * [USER](#user)
-        * [ARG](#arg)
-        * [HEALTHCHECK](#healthcheck)
+* [Dockerfile](#dockerfile)
+    * [FROM](#from)
+    * [LABEL](#label)
+    * [ENV](#env)
+    * [WORKDIR](#workdir)
+    * [COPY](#copy)
+    * [ADD](#add)
+    * [RUN](#run)
+    * [CMD](#cmd)
+    * [ENTRYPOINT](#entrypoint)
+    * [VOLUME](#volume)
+    * [EXPOSE](#expose)
+    * [STOPSIGNAL](#stopsignal)
+    * [USER](#user)
+    * [ARG](#arg)
+    * [HEALTHCHECK](#healthcheck)
     * [Сборка проекта](#сборка-проекта)
     * [Уменьшение размера образа](#уменьшение-размера-образа)
     * [Многоэтапная сборка (multi-stage builds)](#многоэтапная-сборка)
     * [Инструменты для Docker](#инструменты-для-docker)
 
 * [Docker Compose](#docker-compose)
-    * [Команды](#команды)
-        * [Сборка проекта Docker Compose (build)](#сборка-проекта-docker-compose)
-        * [Запуск проекта Docker Compose (up)](#запуск-проекта-docker-compose)
-        * [Остановка проекта Docker Compose (stop, down)](#остановка-проекта-docker-compose)
-        * [Просмотр состояния Docker Compose (ps, logs, images)](#просмотр-состояния-docker-compose)
-        * [Выполнение команды внутри контейнера Docker Compose (exec)](#выполнение-команды-внутри-контейнера-docker-compose)
-        * [Прочие команды Docker Compose](#прочие-команды-docker-compose)
-    * [Docker Compose file](#docker-compose-file)
-        * [version](#version)
-        * [services](#services)
-        * [build](#build)
-        * [image](#image)
-        * [ports](#ports)
-        * [expose](#expose)
-        * [env_file](#env_file)
-        * [environment](#environment)
-        * [volumes](#volumes)
-        * [container_name](#container_name)
-        * [entrypoint](#entrypoint)
-        * [command](#command)
-        * [depends_on](#depends_on)
-        * [restart](#restart)
-        * [healthcheck](#healthcheck)
+    * [Установка Docker Compose](#установка-docker-compose)
+
+* [Команды Docker Compose](#команды-docker-compose)
+    * [Сборка проекта Docker Compose (build)](#сборка-проекта-docker-compose)
+    * [Запуск проекта Docker Compose (up)](#запуск-проекта-docker-compose)
+    * [Остановка проекта Docker Compose (stop, down)](#остановка-проекта-docker-compose)
+    * [Просмотр состояния Docker Compose (ps, logs, images)](#просмотр-состояния-docker-compose)
+    * [Выполнение команды внутри контейнера Docker Compose (exec)](#выполнение-команды-внутри-контейнера-docker-compose)
+    * [Прочие команды Docker Compose](#прочие-команды-docker-compose)
+
+* [Docker Compose file](#docker-compose-file)
+    * [version](#version)
+    * [services](#services)
+    * [build](#build)
+    * [image](#image)
+    * [ports](#ports)
+    * [expose](#expose)
+    * [env_file](#env_file)
+    * [environment](#environment)
+    * [volumes](#volumes)
+    * [container_name](#container_name)
+    * [entrypoint](#entrypoint)
+    * [command](#command)
+    * [depends_on](#depends_on)
+    * [restart](#restart)
+    * [healthcheck](#healthcheck)
 
 
 # Начало работы
@@ -137,7 +140,7 @@
 Работает на Linux, macOS и Windows.
 
 
-# Основные инструменты
+# Команды Docker
 
 ## Клонирование образа
 
@@ -419,7 +422,7 @@
     docker push
 
 
-## Dockerfile
+# Dockerfile
 
 [Наверх](#содержание)
 
@@ -429,7 +432,7 @@ Dockerfile является настройкой собственного кон
 [Документация по всем командам](https://docs.docker.com/engine/reference/builder/).
 
 
-### FROM
+## FROM
 
 [Наверх](#содержание)
 
@@ -444,7 +447,7 @@ Dockerfile является настройкой собственного кон
     FROM debian:11.4-slim
 
 
-### LABEL
+## LABEL
 
 [Наверх](#содержание)
 
@@ -457,7 +460,7 @@ Dockerfile является настройкой собственного кон
     LABEL maintainer="user@example.org" version="1.1.1"
 
 
-### ENV
+## ENV
 
 [Наверх](#содержание)
 
@@ -471,7 +474,7 @@ Dockerfile является настройкой собственного кон
     ENV NGINX_VERSION=1.23.1
 
 
-### WORKDIR
+## WORKDIR
 
 [Наверх](#содержание)
 
@@ -487,7 +490,7 @@ Dockerfile является настройкой собственного кон
     WORKDIR /app
 
 
-### COPY
+## COPY
 
 [Наверх](#содержание)
 
@@ -504,7 +507,7 @@ Dockerfile является настройкой собственного кон
     COPY . /home/user/
     COPY nginx_config/ /home/user/nginx_config
 
-### ADD
+## ADD
 
 [Наверх](#содержание)
 
@@ -521,7 +524,7 @@ Dockerfile является настройкой собственного кон
     ADD <url> /home/user/
 
 
-### RUN
+## RUN
 
 [Наверх](#содержание)
 
@@ -536,7 +539,7 @@ Dockerfile является настройкой собственного кон
     RUN apt install gcc -y && \
         gcc -Wall -o main main.c
 
-### CMD
+## CMD
 
 [Наверх](#содержание)
 
@@ -551,7 +554,7 @@ Dockerfile является настройкой собственного кон
     CMD ["nginx", "-g", "daemon off;"]
 
 
-### ENTRYPOINT
+## ENTRYPOINT
 
 [Наверх](#содержание)
 
@@ -566,7 +569,7 @@ Dockerfile является настройкой собственного кон
     ENTRYPOINT ["nginx", "-g", "daemon off;"]
 
 
-### VOLUME
+## VOLUME
 
 [Наверх](#содержание)
 
@@ -582,7 +585,7 @@ Dockerfile является настройкой собственного кон
     VOLUME ["/var/log"]
 
 
-### EXPOSE
+## EXPOSE
 
 [Наверх](#содержание)
 
@@ -599,7 +602,7 @@ Dockerfile является настройкой собственного кон
     EXPOSE 80 443
 
 
-### STOPSIGNAL
+## STOPSIGNAL
 
 [Наверх](#содержание)
 
@@ -612,7 +615,7 @@ Dockerfile является настройкой собственного кон
     STOPSIGNAL SIGKILL
 
 
-### USER
+## USER
 
 [Наверх](#содержание)
 
@@ -626,7 +629,7 @@ Dockerfile является настройкой собственного кон
     USER user:user
 
 
-### ARG
+## ARG
 
 [Наверх](#содержание)
 
@@ -640,7 +643,7 @@ Dockerfile является настройкой собственного кон
     ARG FOO=bar
 
 
-### HEALTHCHECK
+## HEALTHCHECK
 
 [Наверх](#содержание)
 
@@ -798,7 +801,7 @@ Docker Compose используется для одновременного уп
 Это файл, который будет содержать инструкции, необходимые для запуска и настройки сервисов.
 Обычно он хранится в корневой директории проекта.
 
-## Установка
+## Установка Docker Compose
 
 [Наверх](#содержание)
 
@@ -815,11 +818,11 @@ Docker Compose используется для одновременного уп
 [Более подробная инструкция по установке](https://docs.docker.com/compose/install/linux/).
 
 
-## Команды
+# Команды Docker Compose
 
 [Наверх](#содержание)
 
-### Сборка проекта Docker Compose
+## Сборка проекта Docker Compose
 
 [Наверх](#содержание)
 
@@ -838,7 +841,7 @@ Docker Compose используется для одновременного уп
     docker compose -f docker-compose-new.yml build
 
 
-### Запуск проекта Docker Compose
+## Запуск проекта Docker Compose
 
 [Наверх](#содержание)
 
@@ -855,7 +858,7 @@ Docker Compose используется для одновременного уп
     docker compose up -d
 
 
-### Остановка проекта Docker Compose
+## Остановка проекта Docker Compose
 
 [Наверх](#содержание)
 
@@ -868,7 +871,7 @@ Docker Compose используется для одновременного уп
     docker compose down
 
 
-### Просмотр состояния Docker Compose
+## Просмотр состояния Docker Compose
 
 [Наверх](#содержание)
 
@@ -885,7 +888,7 @@ Docker Compose используется для одновременного уп
     docker compose images
 
 
-### Выполнение команды внутри контейнера Docker Compose
+## Выполнение команды внутри контейнера Docker Compose
 
 [Наверх](#содержание)
 
@@ -894,7 +897,7 @@ Docker Compose используется для одновременного уп
     docker compose exec <service-name> <command>
 
 
-### Прочие команды Docker Compose
+## Прочие команды Docker Compose
 
 [Наверх](#содержание)
 
@@ -903,7 +906,7 @@ Docker Compose используется для одновременного уп
     docker compose --help
 
 
-## Docker Compose file
+# Docker Compose file
 
 [Наверх](#содержание)
 
@@ -911,7 +914,7 @@ Docker Compose используется для одновременного уп
 
 [Документация по 3, последней версии](https://docs.docker.com/compose/compose-file/compose-file-v3/).
 
-### version
+## version
 
 [Наверх](#содержание)
 
@@ -934,7 +937,7 @@ version: "3.0"
 ```
 
 
-### services
+## services
 
 [Наверх](#содержание)
 
@@ -951,7 +954,7 @@ services:
 ```
 
 
-### build
+## build
 
 [Наверх](#содержание)
 
@@ -991,7 +994,7 @@ services:
         - ARG2=arg2
 
 
-### image
+## image
 
 [Наверх](#содержание)
 
@@ -1006,7 +1009,7 @@ services:
     image: nginx:1.23.2
 
 
-### ports
+## ports
 
 [Наверх](#содержание)
 
@@ -1029,7 +1032,7 @@ services:
       - 6060:6060
 
 
-### expose
+## expose
 
 [Наверх](#содержание)
 
@@ -1046,7 +1049,7 @@ services:
       - "8000"
 
 
-### env_file
+## env_file
 
 [Наверх](#содержание)
 
@@ -1077,7 +1080,7 @@ services:
     NGINX_VERSION=1.23.1
 
 
-### environment
+## environment
 
 [Наверх](#содержание)
 
@@ -1098,7 +1101,7 @@ services:
       - PASSWORD="password"
 
 
-### volumes
+## volumes
 
 [Наверх](#содержание)
 
@@ -1161,7 +1164,7 @@ services:
         name: mysql_database
 
 
-### container_name
+## container_name
 
 [Наверх](#содержание)
 
@@ -1174,7 +1177,7 @@ services:
     сontainer_name: nginx_container
 
 
-### entrypoint
+## entrypoint
 
 [Наверх](#содержание)
 
@@ -1190,7 +1193,7 @@ services:
     entrypoint: "nginx -g daemon off;"
     entrypoint: ["nginx", "-g", "daemon off;"]
 
-### command
+## command
 
 [Наверх](#содержание)
 
@@ -1207,7 +1210,7 @@ services:
     command: ["nginx", "-g", "daemon off;"]
 
 
-### depends_on
+## depends_on
 
 [Наверх](#содержание)
 
@@ -1231,7 +1234,7 @@ services:
         ...
 
 
-### restart
+## restart
 
 [Наверх](#содержание)
 
@@ -1249,7 +1252,7 @@ services:
     restart: on-failure
 
 
-### healthcheck
+## healthcheck
 
 [Наверх](#содержание)
 
