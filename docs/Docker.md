@@ -222,6 +222,35 @@
     docker logs <container-hash>
 
 
+## Сборка проекта
+
+[Наверх](#содержание)
+
+Сборка всего проекта в один контейнер.
+
+Опции.
+
+* `-t / --tag` - тег для контейнера.
+* `-f / --file` - путь до Dockerfile.
+* `--squash` - все слои будут соединены в один.
+
+Точка в конце указывает текущую директорию как место сборки.
+Так же можно указать путь до директории.
+
+    docker build -t <username>/<container-name>:<vesion> .
+
+Полная документация по
+[docker build](https://docs.docker.com/engine/reference/commandline/build/).
+
+*Примеры:*
+
+Сборка контейнера с именем.
+
+    docker build -t kotdimos/my_nginx:1.23.1 .
+
+Сборка контейнера из определённого Dockerfile.
+
+    docker build -t kotdimos/my_nginx:1.23.1 -f Dockerfile.nginx .
 
 
 ## Просмотр информации об объекте
@@ -658,45 +687,6 @@ Dockerfile является настройкой собственного кон
 
     HEALTHCHECK <command>
 
-
-## Сборка проекта
-
-[Наверх](#содержание)
-
-Сборка всего проекта в один контейнер.
-
-Опции.
-
-* `-t / --tag` - тег для контейнера.
-* `-f / --file` - путь до Dockerfile.
-* `--squash` - все слои будут соединены в один.
-
-Точка в конце указывает текущую директорию как место сборки.
-Так же можно указать путь до директории.
-
-    docker build -t <username>/<container-name>:<vesion> .
-
-Полная документация по
-[docker build](https://docs.docker.com/engine/reference/commandline/build/).
-
-*Примеры:*
-
-Сборка контейнера с именем.
-
-    docker build -t kotdimos/my_nginx:1.23.1 .
-
-Сборка контейнера из определённого Dockerfile.
-
-    docker build -t kotdimos/my_nginx:1.23.1 -f Dockerfile.nginx .
-
-
-## Логи контейнера
-[Наверх](#содержание)
-
-Для просмотра логов, которые отдаёт контейнер есть атрибут `logs`.
-
-    docker logs <container-name>
-    docker logs <container-hash>
 
 ## Уменьшение размера образа
 
