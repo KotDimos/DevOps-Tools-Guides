@@ -52,6 +52,7 @@
     * [Просмотр состояния Docker Compose (ps, logs, images)](#просмотр-состояния-docker-compose)
     * [Выполнение команды внутри контейнера Docker Compose (exec)](#выполнение-команды-внутри-контейнера-docker-compose)
     * [Прочие команды Docker Compose](#прочие-команды-docker-compose)
+    * [Просмотр версии](#просмотр-версии)
 
 * [Docker Compose file](#docker-compose-file)
     * [version](#version)
@@ -957,6 +958,15 @@ Docker Compose используется для одновременного уп
 Выполнение команды в контейнере.
 
     docker compose exec <service-name> <command>
+
+
+## Просмотр версии
+
+[Наверх](#содержание)
+
+`version` - предназначен для просмотра версии docker compose.
+
+    docker compose version
 
 
 ## Прочие команды Docker Compose
