@@ -1349,3 +1349,37 @@ interval, timeout и start_period имеют специфичный вариан
       timeout: 10s
       retries: 3
       start_period: 40s
+
+
+## extends
+
+`extends` - позволяет использовать общие конфигурации
+для разных файлов или даже для разных проектов.
+Расширение служб полезно, если есть несколько служб,
+повторно использующих общий набор параметров конфигурации.
+
+Шаблон.
+
+    extends:
+      file: /path/to/file
+      service: <service-name>
+
+*Примеры:*
+
+Использование сервиса из другого файла.
+
+first-service.yml
+
+    services:
+      webapp:
+        build: .
+        ports:
+          - "8000:8000"
+
+second-service.yml
+
+    services:
+      web:
+        extends:
+          file: first-service.yml
+          service: webapp
