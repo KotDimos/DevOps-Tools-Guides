@@ -50,9 +50,11 @@
     * [Запуск проекта Docker Compose (up)](#запуск-проекта-docker-compose)
     * [Остановка проекта Docker Compose (stop, down)](#остановка-проекта-docker-compose)
     * [Просмотр состояния Docker Compose (ps, logs, images)](#просмотр-состояния-docker-compose)
+    * [Отображение запущенных процессов Docker Compose (top)](#отображение-запущенных-процессов-docker-compose)
+    * [Просмотр образов Docker Compose (images)](#просмотр-образов-docker-compose)
     * [Выполнение команды внутри контейнера Docker Compose (exec)](#выполнение-команды-внутри-контейнера-docker-compose)
+    * [Просмотр версии Docker Compose (version)](#просмотр-версии-docker-compose)
     * [Прочие команды Docker Compose](#прочие-команды-docker-compose)
-    * [Просмотр версии](#просмотр-версии)
 
 * [Docker Compose file](#docker-compose-file)
     * [version](#version)
@@ -846,6 +848,7 @@ Docker Compose используется для одновременного уп
 Это файл, который будет содержать инструкции, необходимые для запуска и настройки сервисов.
 Обычно он хранится в корневой директории проекта.
 
+
 ## Установка Docker Compose
 
 [Наверх](#содержание)
@@ -933,7 +936,7 @@ Docker Compose используется для одновременного уп
     docker compose images
 
 
-## Отображение запущенных процессов
+## Отображение запущенных процессов Docker Compose
 
 [Наверх](#содержание)
 
@@ -942,7 +945,7 @@ Docker Compose используется для одновременного уп
     docker compose top
 
 
-## Просмотр образов
+## Просмотр образов Docker Compose
 
 [Наверх](#содержание)
 
@@ -960,7 +963,7 @@ Docker Compose используется для одновременного уп
     docker compose exec <service-name> <command>
 
 
-## Просмотр версии
+## Просмотр версии Docker Compose
 
 [Наверх](#содержание)
 
