@@ -1001,7 +1001,7 @@ docker compose обычно запускает только файл
 
 Полная документация по [docker compose file](https://docs.docker.com/compose/compose-file).
 
-[Документация по 3, последней версии](https://docs.docker.com/compose/compose-file/compose-file-v3/).
+[Документация по 3 версии](https://docs.docker.com/compose/compose-file/compose-file-v3/).
 
 ## version
 
