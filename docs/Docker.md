@@ -892,15 +892,11 @@ docker compose обычно запускает только файл
 
     docker compose build
 
-Не использовать старые кэши.
-
-    docker compose build --no-cache
-
-Если файл с инструкциями назвается не `docker-compose.yml`,
-то добавляется флаг `-f`.
-К другим командам применяется ровно так же.
-
-    docker compose -f docker-compose-new.yml build
+Опции:
+* `--no-cache` - не использовать кэш при сборке образа.
+* `--pull` - стараться всегда получить более новую версию.
+* `--quiet / -q` - ничего не выводить на stdout.
+* `--build-arg` - установить параметры сборки.
 
 
 ## Запуск проекта Docker Compose
