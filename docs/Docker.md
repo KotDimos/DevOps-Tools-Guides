@@ -72,6 +72,7 @@
     * [depends_on](#depends_on)
     * [restart](#restart)
     * [healthcheck](#healthcheck)
+    * [extends](#extends)
 
 
 # Начало работы
