@@ -82,8 +82,10 @@
 
 [Наверх](#содержание)
 
-[Начальная установка Docker](https://docs.docker.com/engine/install/)
-полностью описана для любой операционной системы.
+[Начальная установка Docker](https://docs.docker.com/engine/install/).
+
+Для Windows и Mac OS систем, требуется установить Docker Desktop c
+[официального сайта](https://www.docker.com/products/docker-desktop/).
 
 
 ## Настройка после установки
@@ -108,9 +110,6 @@
 
     sudo systemctl disable docker.service
     sudo systemctl disable containerd.service
-
-Для Windows и Mac OS систем, требуется установить дополнительно Docker Desktop c
-[официального сайта](https://www.docker.com/products/docker-desktop/).
 
 
 ## Проверка установки
