@@ -108,7 +108,13 @@
     sudo systemctl disable docker.service
     sudo systemctl disable containerd.service
 
-Для проверки что Docker установлен правильно.
+Для Windows и Mac OS систем, требуется установить дополнительно Docker Desktop c
+[официального сайта](https://www.docker.com/products/docker-desktop/).
+
+
+## Проверка установки
+
+Для проверки работы Docker.
 
     docker run hello-world
     docker ps -a
@@ -119,9 +125,6 @@
 
     docker rm $(docker ps -aq)
     docker rmi hello-world
-
-Для Windows и Mac OS систем, требуется установить дополнительно Docker Desktop c
-[официального сайта](https://www.docker.com/products/docker-desktop/).
 
 
 # Словарь
