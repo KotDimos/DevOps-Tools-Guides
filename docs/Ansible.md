@@ -36,7 +36,7 @@
 * Через менеджер python - pip.
 
 Полная
-[документация по установке](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html).
+[документация по установке для Linux](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html).
 
 
 # Словарь
