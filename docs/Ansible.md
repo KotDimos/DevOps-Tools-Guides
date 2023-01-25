@@ -69,19 +69,19 @@
 
 [Наверх](#содержание)
 
-* ansible.cfg - первоначальная настройка для ansible.
-* playbook-name.yml - ansible-playbook, в котором описаны задачи.
-* requirements.yml - файл с перечнем ansible-ролей, отдельно вынесенных задач.
-* inventories - директория для инвентарей ansible.
-* hosts - файл инвентаризации для рабочих серверов.
+* `ansible.cfg` - первоначальная настройка для ansible.
+* `playbook-name.yml` - ansible-playbook, в котором описаны задачи.
+* `requirements.yml` - файл с перечнем ansible-ролей, отдельно вынесенных задач.
+* `inventories` - директория для инвентарей ansible.
+* `hosts` - файл инвентаризации для рабочих серверов.
 
 Конфигурационный файл `ansible.cfg` может находиться в таких местах,
 и в таком приоритете происходит поиск файла.
 
-* ANSIBLE_CONFIG - переменная среды, если установлена.
-* ./ansible.cfg – в текущем каталоге.
-* ~/.ansible.cfg — в домашнем каталоге.
-* /etc/ansible/ansible.cfg — в стандартной директории.
+* `ANSIBLE_CONFIG` - переменная среды, если установлена.
+* `./ansible.cfg` – в текущей директории.
+* `~/.ansible.cfg` — в домашней директории пользователя.
+* `/etc/ansible/ansible.cfg` — в стандартной директории ansible.
 
 [Полная документация по ansible.cfg](https://docs.ansible.com/ansible/latest/reference_appendices/config.html).
 
