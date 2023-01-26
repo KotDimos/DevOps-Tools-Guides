@@ -63,9 +63,8 @@
 Список всех терминов в [документации](http://docs.ansible.com/ansible/devel/glossary.html).
 
 
-# Основы
 
-## Структура файлов
+# Структура файлов
 
 [Наверх](#содержание)
 
@@ -74,6 +73,11 @@
 * `requirements.yml` - файл с перечнем ansible-ролей, отдельно вынесенных задач.
 * `inventories` - директория для инвентарей ansible.
 * `hosts` - файл инвентаризации для рабочих серверов.
+
+
+## ansible.cfg
+
+[Наверх](#содержание)
 
 Конфигурационный файл `ansible.cfg` может находиться в таких местах,
 и в таком приоритете происходит поиск файла.
@@ -86,6 +90,12 @@
 [Полная документация по ansible.cfg](https://docs.ansible.com/ansible/latest/reference_appendices/config.html).
 
 [Полный список параметров](https://docs.ansible.com/ansible/latest/reference_appendices/config.html#common-options).
+
+
+
+## Древовидная структура файлов
+
+[Наверх](#содержание)
 
 [Один из вариантов](https://docs.ansible.com/ansible/2.8/user_guide/playbooks_best_practices.html#alternative-directory-layout)
 правильной структуры директории.
@@ -126,7 +136,7 @@ roles/
 ```
 
 
-## Инвентарный файл
+# Инвентарный файл
 
 [Наверх](#содержание)
 
@@ -196,7 +206,6 @@ ansible_port=1234
 
 Все ключи можно посмотреть в
 [документации](https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html#connecting-to-hosts-behavioral-inventory-parameters).
-
 
 
 # Playbook
