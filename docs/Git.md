@@ -311,6 +311,10 @@
 
     git commit --author="Name <exemple_email@exemple.com>"
 
+Создание пустого коммита - коммита без изменений.
+
+    git commit --allow-empty -m "<message>"
+
 *Примеры:*
 
 Коммит файла.
