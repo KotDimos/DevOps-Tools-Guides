@@ -502,6 +502,16 @@
 
     docker cp container1:/home/user/file_name ./file_name
 
+## Информация об использовании диска
+
+Команда, для того чтобы получить сколько использует docker дискового пространства.
+
+    docker system df
+
+Подробная информация об каждом объекте.
+
+    docker system df -v
+
 
 # Dockerfile
 
