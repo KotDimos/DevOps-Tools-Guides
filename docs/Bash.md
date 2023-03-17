@@ -381,6 +381,11 @@
     function <function-name>() {
     }
 
+Или.
+
+    <function-name>() {
+    }
+
 Возращения значения.
 
     function <function-name> {
