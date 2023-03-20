@@ -386,13 +386,13 @@
     <function-name>() {
     }
 
-Возращения значения.
+Возвращения значения.
 
     function <function-name> {
         return $<return-value>
     }
 
-Принять возращаемое значение функции.
+Принять возвращаемое значение функции.
 
     result=$(<function-name>)
 
