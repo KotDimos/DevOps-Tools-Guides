@@ -443,6 +443,43 @@ tasks:
 * `vars` - перечень переменных, но их нельзя переопределить выше.
 
 
+## Requirements
+
+[Наверх](#содержание)
+
+Чтобы вести зависимость проекта от требуемых ролей используется файл `requirements.yml`.
+
+Для установки нескольких ролей из файла.
+
+* `src` - источник роли, указывается URL-адрес репозитория.
+* `scm` - если src является URL-адресом, нужно указать scm.
+Поддерживаются только git или hg. По умолчанию git.
+* `version` - версия роли для загрузки.
+Используется тег, хэш коммита или имя ветки. По умолчанию master.
+* `name` - переопределение имени роли. По умолчанию используется имя при загрузке.
+
+*Пример:*
+
+    - src: https://github.com/bennojoy/nginx
+      scm: git
+      version: master
+      name: nginx_role
+
+Установка из requirements.
+
+    ansible-galaxy install -r requirements.yml
+
+По стандарту он использует директорию ~/.ansible/roles.
+
+Если требуется изменить путь до директории, то используется флаг `--roles-path`.
+
+    ansible-galaxy install --roles-path "<path>" -r requirements.yml
+
+*Пример:*
+
+    ansible-galaxy install --roles-path ./roles -r requirements.yml
+
+
 # Полезные ссылки
 
 [Наверх](#содержание)
