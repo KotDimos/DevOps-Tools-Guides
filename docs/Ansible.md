@@ -66,7 +66,6 @@
 Список всех терминов в [документации](http://docs.ansible.com/ansible/devel/glossary.html).
 
 
-
 # Структура файлов
 
 [Наверх](#содержание)
@@ -470,7 +469,7 @@ tasks:
 
     ansible-galaxy install -r requirements.yml
 
-По стандарту он использует директорию ~/.ansible/roles.
+По стандарту используется директория `~/.ansible/roles`.
 
 Если требуется изменить путь до директории, то используется флаг `--roles-path`.
 
