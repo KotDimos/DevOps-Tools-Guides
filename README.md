@@ -22,4 +22,5 @@
 
 # Полезные ссылки для прочтения
 
-[Методология для создания SaaS-приложений](https://12factor.net)
+[Методология для создания SaaS-приложений - 12 Factor App](https://12factor.net)
+[7 недостающих факторов в подходе 12 Factor App](https://habr.com/ru/companies/flant/articles/460363/)
