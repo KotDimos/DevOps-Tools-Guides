@@ -501,7 +501,8 @@ tasks:
 
 *Пример:*
 
-Пример небольшого шаблона, для подстановки значений.
+Пример небольшого шаблона, для подстановки значений
+(все переменные должны быть объявлены).
 
 Файл `nginx.conf.j2`.
 
@@ -520,6 +521,40 @@ tasks:
         src: "nginx.conf.j2"
         dest: "/etc/nginx/conf.d/defaults.conf"
         mode: "0644"
+
+
+## Условие
+
+[Наверх](#содержание)
+
+В шаблонах можно использовать условия, для подстановки значений при различных данных.
+
+*Шаблон:*
+
+    {% if condition %}
+    {% elif condition %}
+    {% else %}
+    {% endif %}
+
+*Пример:*
+
+    server {
+        {% if nginx_port == "80" %}
+            listen {{ nginx_port }}
+
+        {% elif nginx_port == "443" %}
+            listen {{ nginx_port }} ssl;
+            server_name example.com;
+            ssl_certificate example.com.crt;
+            ssl_certificate_key example.com.key;
+
+        {% endif %}
+
+        server_name {{ server_name }};
+        location / {
+            proxy_pass http://{{ ip_forward }}:{{ port_forward }};
+        }
+    }
 
 
 # Полезные ссылки
