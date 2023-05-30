@@ -12,7 +12,6 @@
 # Ссылки для удобного просмотра
 
 * [GitBook](https://kotdimos.gitbook.io/devops_tools_guides/)
-* [GitHub Pages](https://kotdimos.github.io/DevOps_Tools_Guides/)
 
 
 # Полезные ссылки для прочтения
