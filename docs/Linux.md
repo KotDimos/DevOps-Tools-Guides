@@ -1118,17 +1118,50 @@ G — Гбайт
 
 Архивация файлов.
 
-    tar [options ...] <archive-name>.tar <file-name> [<file-name> ...]
+    tar [options ...] <archive-name>.tar[.gz] <file-name> [<file-name> ...]
+
+Разархивирование файлов.
+
+    tar [options ...] <archive-name>.tar[.gz]
 
 Опции:
 
 * `-c / --create` - создать новый архив.
+* `-f / --file [files]` - Вывести результат в файл.
 * `-A / --concatenate` - Присоединить существующий архив к другому.
+* `-v / --verbose` - Выводить подробную информацию процесса.
 * `-t / --list` - Сформировать список содержимого архива.
-* `-d / --diff` Проверить различие между архивами.
-* `--delete` Удалить из существующего архива файл.
-* `-u / --update` Обновить архив более новыми файлами с тем же именем.
+* `-d / --diff` - Проверить различие между архивами.
+* `--delete` - Удалить из существующего архива файл.
+* `-u / --update` - Обновить архив более новыми файлами с тем же именем.
 * `-x / --extract` - Извлечь файлы из архива.
+* `-C / --directory dir` - Сменить директорию перед выполнением.
+
+*Примеры:*
+
+Архивирование файлов `file1.txt`, `file2.txt` и `file3.txt` в архив `archive.tar`.
+
+    tar -cvf archive.tar file1.txt file2.txt file3.txt
+
+Вывести содержимое архива `archive.tar`.
+
+    tar -xvf archive.tar
+
+Распаковать архив `archive.tar` в текущую директорию.
+
+    tar -xvf archive.tar
+
+Распаковать архив `archive.tar` в `/home/user`.
+
+    tar -xvf archive.tar -C /home/user
+
+Архивирование и сжатие файлов `file1.txt`, `file2.txt` и `file3.txt` в архив `archive.tar.gz`.
+
+    tar -cvfz archive.tar.gz file1.txt file2.txt file3.txt
+
+Распаковать и разжать архив `archive.tar.gz`.
+
+    tar -xvfz archive.tar.gz
 
 
 # Прочее
