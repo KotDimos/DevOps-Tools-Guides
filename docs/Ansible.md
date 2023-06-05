@@ -602,9 +602,25 @@ server {
 
 *Примеры:*
 
-Указание переменной по умолчанию.
+Указание значение переменной по умолчанию.
 
     {{ some_variable | default(5) }}
+
+Вывод списка, только с уникальными значениями.
+
+    {{ some_list | unique }}
+
+Объединение двух списков.
+
+    {{ some_list1 | union(some_list2) }}
+
+Пересечение 2 списков (уникальный список всех элементов в обоих):
+
+    {{ some_list1 | intersect(some_list2) }}
+
+Разница в 2 списках (элементы в 1, которые не существуют во 2):
+
+    {{ some_list1 | difference(some_list2) }}
 
 [Полная документация по фильтрам](https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_filters.html).
 
