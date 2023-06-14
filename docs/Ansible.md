@@ -626,6 +626,38 @@ server {
 [Полная документация по фильтрам](https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_filters.html).
 
 
+# Тестирование
+
+[Наверх](#содержание)
+
+`Molecule` - фрэймворк, предназначенный для тестирования ролей в Ansible.
+
+
+## Установка
+
+[Наверх](#содержание)
+
+Установка molecule.
+
+    python3 -m pip install molecule
+
+
+## Иницилизация роли
+
+[Наверх](#содержание)
+
+Molecule использует ansible-galaxy под капотом для создания обычных макетов ролей.
+Дополнительно создаётся директория molecule с нужными файлами.
+
+    molecule init role [namespace].[role_name] --driver-name [driver]
+
+*Пример:*
+
+Создание роли `nginx` с использованием драйвера docker.
+
+    molecule init role acme.nginx --driver-name docker
+
+
 # Полезные ссылки
 
 [Наверх](#содержание)
