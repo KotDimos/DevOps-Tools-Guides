@@ -673,6 +673,42 @@ Molecule использует ansible-galaxy под капотом для соз
     molecule init role acme.nginx --driver-name docker
 
 
+## Запуск тестирования
+
+[Наверх](#содержание)
+
+Тестирование с помощью molecule запускается в корневой директории роли.
+
+Запуск создания экземпляра.
+
+    molecule create
+
+Просмотр создания экзепляра.
+
+    molecule list
+
+Запустить проверку роли.
+
+    molecule converge
+
+Запуск тестирования роли.
+
+    molecule verify
+
+Если требуется проверить экземпляр руками.
+
+    molecule login
+
+Уничтожение экзепляра.
+
+    molecule destroy
+
+Также есть команда, если требуется запустить сразу `create`,
+`converge`, `verify` и `destroy` по очереди.
+
+    molecule test
+
+
 # Полезные ссылки
 
 [Наверх](#содержание)
