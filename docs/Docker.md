@@ -1019,6 +1019,10 @@ docker compose обычно запускает только файл
 
     docker compose up -d
 
+Запустить проект, собрать его и в фоновом режиме.
+
+    docker compose up --build
+
 
 ## Остановка проекта Docker Compose
 
@@ -1044,10 +1048,6 @@ docker compose обычно запускает только файл
 Вывод списка контейнеров.
 
     docker compose ps
-
-Показать список образов.
-
-    docker compose images
 
 
 ## Отображение запущенных процессов Docker Compose
