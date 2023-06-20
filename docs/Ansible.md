@@ -11,7 +11,9 @@
     * [ansible.cfg](#ansible.cfg)
     * [Древовидная структура файлов](#древовидная-структура-файлов)
 
-* [Инвентарный файл hosts](#инвентарный-файл-hosts)
+* [Инвентарный файл (hosts)](#инвентарный-файл)
+    * [ini](#ini)
+    * [yml](#yml)
 
 * [Playbook](#playbook)
     * [Переменные (vars)](#переменные)
@@ -148,76 +150,97 @@ roles/
 ```
 
 
-# Инвентарный файл hosts
+# Инвентарный файл
 
 [Наверх](#содержание)
 
 Инвентарный файл - хост или перечень хостов, с которыми будет происходить работа.
 
-`[ ]` - В скобки указывается название группы серверов.
+Инвентарный файл можно описать в формате ini или yml.
 
-``` ini
-[dev]
-exemple1.com
-exemple2.com
+## ini
 
-[prod]
-exemple3.com
-exemple4.com
-```
+[Наверх](#содержание)
+
+`[]` - В скобки указывается название группы серверов.
+
+    [web]
+    web1
+    web2
+
+    [db]
+    db1
+    db2
 
 Частоиспользуемые ключи:
 
-ansible_host - ip адрес.
+* `ansible_host` - ip адрес.
+* `ansible_user` - имя пользователя для подключения на удаленный сервер.
+* `ansible_sudo_pass` - Пароль для подключения sudo пользователя.
+* `ansible_pass` - Пароль пользователя.
+* `ansible_ssh_private_key_file` - путь до закрытого ключа. Для входа без участия пароля.
+* `ansible_port` - порт подключения ssh.
 
 *Пример:*
 
-``` yaml
-ansible_host=0.0.0.0
-```
-
-ansible_user - имя пользователя для подключения на удаленный сервер.
-
-*Пример:*
-
-``` yaml
-ansible_user=user
-```
-
-ansible_pass - Пароль пользователя.
-
-*Пример:*
-
-``` yaml
-ansible_pass=your_password
-```
-
-ansible_sudo_pass - Пароль для подключения sudo пользователя.
-
-*Пример:*
-
-``` yaml
-ansible_sudo_pass=your_password
-```
-
-ansible_ssh_private_key_file - путь до закрытого ключа. Для входа без участия пароля.
-
-*Пример:*
-
-``` yaml
-ansible_ssh_private_key_file=/home/user/.ssh/id_rsa
-```
-
-ansible_port - порт подключения ssh.
-
-*Пример:*
-
-``` yaml
-ansible_port=1234
-```
+    [example]
+    example1
+    ansible_host=0.0.0.0
+    ansible_user=user
+    ansible_ssh_private_key_file=/home/user/.ssh/id_rsa
+    ansible_port=2222
 
 Все ключи можно посмотреть в
 [документации](https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html#connecting-to-hosts-behavioral-inventory-parameters).
+
+
+## yml
+
+[Наверх](#содержание)
+
+`hosts` - указываются точки доступа, которые не имеют какой-то группы.
+
+`children` - указываются названия группы серверов и внутри идёт имя группы.
+И дальше идёт перечисление названий серверов, и как подключаться.
+
+Пример yml файла.
+
+``` yaml
+---
+all:
+  hosts:
+    dev:
+  children:
+    web:
+      hosts:
+        web1:
+        web2:
+    db:
+      hosts:
+        db1:
+        db2:
+```
+
+Также можно указывать нужные прараметры как и в ini формате.
+
+*Пример:*
+
+``` yaml
+---
+all:
+  children:
+    example:
+      example1:
+        ansible_host: 0.0.0.0
+        ansible_user: user
+        ansible_ssh_private_key_file: /home/user/.ssh/id_rsa
+        ansible_port: 2222
+      example2:
+        ansible_host: 0.0.0.0
+        ansible_user: user
+        ansible_ssh_private_key_file: /home/user/.ssh/id_rsa
+        ansible_port: 2222
+```
 
 
 # Playbook
