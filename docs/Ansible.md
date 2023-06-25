@@ -25,6 +25,7 @@
     * [Создание роли](#создание-роли)
     * [Директории в роли](#директории-в-роли)
     * [Requirements](#requirements)
+    * [Handlers](#handlers)
 
 * [Шаблоны](#шаблоны)
     * [Параметры в файлах](#параметры-в-файлах)
@@ -518,6 +519,60 @@ tasks:
 *Пример:*
 
     ansible-galaxy install --roles-path ./roles -r requirements.yml
+
+
+## Handlers
+
+[Наверх](#содержание)
+
+`Handlers` - это специальные задачи.
+Они вызываются из других задач ключевым словом `notify`.
+
+Эти задачи срабатывают после выполнения всех задач в сценарии (play).
+При этом, если несколько задач вызвали одну и ту же задачу через notify,
+она выполнится только один раз.
+
+Для этого используется специальная директория `handlers`.
+
+Пример на установке nginx.
+Когда устанавливается nginx и то устанавливаются какие-то настройки конфигурации,
+и требуется после изменения настроек перезапустить nginx.
+
+Конфигурация задач для установки nginx в файле `tasks/main.yml`.
+Здесь, устанавливается последняя версия nginx,
+а также копируются конфигурационные файлы, для настройки nginx.
+
+``` yaml
+- name: Install packages
+  ansible.builtin.apt:
+    name: nginx
+    state: latest
+
+- name: Create nginx config
+  ansible.builtin.template:
+    src: nginx.j2
+    dest: "{{ setting_nginx__path_nginx_conf }}"
+    mode: "0644"
+  notify:
+    - "Reload service nginx"
+```
+
+Файл `handlers/main.yml`, где указываются специальные задачи.
+
+``` yaml
+---
+- name: Reload service nginx
+  ansible.builtin.service:
+    name: nginx
+    state: reloaded
+```
+
+Также можно вызвать выполнение задачу в определённый момент,
+если нужно обновить перед определённой задачей.
+
+``` yaml
+ansible.builtin.meta: flush_handlers
+```
 
 
 # Шаблоны
