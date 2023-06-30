@@ -64,33 +64,26 @@ ClusterIP, NodePort, LoadBalance или ExternalName.
 
 [Наверх](#содержание)
 
-Pod - это минимальная единица для управления Kubernetes.
-Pod - это сетевая абстракция, это один или несколько контейнеров,
-предназначенных для определённой задачи.
+`Pod` - это минимальная единица для управления в Kubernetes.
+Представляет собой один или несколько контейнеров,
+предназначенный для определённой задачи.
 
-Пример pod.yml.
+Пример манифеста для Pod.
 
-    apiVersion: v1                      # версия
-    kind: Pod                           # тип объекта
+    apiVersion: v1
+    kind: Pod
     metadata:
       name: my-pod                      # имя pod'a
       namespace: namespace-web          # указание namespace
-
     spec:                               # описание как должен выглядеть pod
       containers:
-      - name: nginx-server
-        image: nginx:lts-alpine
+        - name: nginx-server
+          image: nginx:latest
+          ports:
+            - containerPort: 80 # открытие порта 80 в контейнере
 
-      ports:                            # Описание портов
-      - name: nginx-server
-        containterPort: 80
-        protocol: TCP
 
-Команда для запуска.
-
-    kubectl apply -f pod.yml
-
-Удаление.
+## ReplicaSet
 
     kubectl delete -f pod.yml
 
