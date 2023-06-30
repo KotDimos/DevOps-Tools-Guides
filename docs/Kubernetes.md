@@ -116,21 +116,21 @@ ClusterIP, NodePort, LoadBalance или ExternalName.
 
 [Наверх](#содержание)
 
-`Namespace` абстракция, которая позволяет разградить
-разные приложения между различными пользователями.
+`Namespace (пространство имён)` - это виртуальная группа ресурсов,
+которая обеспечивает изоляцию и разделение ресурсов между различными
+проектами, командами или приложениями.
 
-Пример файла namespace.yaml.
+Пример манифеста для Namespace.
 
     apiVersion: v1
     kind: Namespace
     metadata:
-      name: <namespace-name>
+      name: namespace-name
 
-Создание namespace.
 
-    kubectl apply -f namespace.yaml
+## Deployment
 
-Удаление namespace.
+[Наверх](#содержание)
 
     kubectl delete -f namespace.yaml
 
