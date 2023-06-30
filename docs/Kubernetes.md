@@ -172,30 +172,68 @@ Deployment использует ReplicaSet для создания и управ
 
 [Наверх](#содержание)
 
-Service - объект, который определяет логический набор подов и политику доступа к ним.
+`Strategy` - указывает стратегию, используемую для замены старых подов на новые.
 
-Пример service.yml.
+1. `Recreate` - удаляет старые pods и создаёт новые. Может приводить к простою в приложении.
 
-    apiVersion: v1
-    kind: Service
+*Пример:*
+
+    apiVersion: apps/v1
+    kind: Deployment
     metadata:
-      namespace: namespace-web
-      name: service-name
+      name: nginx-deployment
     spec:
+      replicas: 3
+      strategy:
+        type: Recreate
       selector:
-        app: nginx-server
-      ports:
-        - protocol: TCP
-          port: 80
-          targetPort: 8080
+        matchLabels:
+          app: nginx-server
+      template:
+        metadata:
+          labels:
+            app: nginx-server
+        spec:
+          containers:
+            - name: nginx
+              image: nginx:latest
+              ports:
+                - containerPort: 80
 
+2. `RollingUpdate` - развёртывание обновляет pods в режиме непрерывного обновления.
 
-Создание service.
+У него есть 2 параметра:
 
-    kubectl apply -f service.yml
+* `maxUnavailable` - максимальное количество недоступных реплик во время обновления.
+* `maxSurge` - максимальное количество дополнительных реплик,
+которые могут быть созданы во время обновления.
 
+*Пример:*
 
-## ReplicaSet
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      name: nginx-deployment
+    spec:
+      replicas: 3
+      strategy:
+        type: RollingUpdate
+        rollingUpdate:
+          maxUnavailable: 1
+          maxSurge: 1
+      selector:
+        matchLabels:
+          app: nginx-server
+      template:
+        metadata:
+          labels:
+            app: nginx-server
+        spec:
+          containers:
+            - name: nginx
+              image: nginx:latest
+              ports:
+                - containerPort: 80
 
 [Наверх](#содержание)
 
