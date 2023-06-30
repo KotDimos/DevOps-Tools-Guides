@@ -132,14 +132,43 @@ ClusterIP, NodePort, LoadBalance или ExternalName.
 
 [Наверх](#содержание)
 
-    kubectl delete -f namespace.yaml
+`Deployment (развертывание)` - позволяет управлять масштабированием и обновлением приложения.
+Deployment обеспечивает создание и управление ReplicaSet'ами и Pod'ами.
+Deployment гарантирует, что указанное количество реплик Pod'ов
+всегда работает и доступно для обработки запросов в любое время.
 
-Получение всех объектов у определённого namespace.
+Deployment позволяет выполнять масштабирование приложения,
+изменять количество реплик Pod'ов,
+выполнять обновление приложения с минимальным влиянием на работу сервиса
+и откатывать изменения в случае необходимости.
 
-    kubectl get all --namespace <namespace-name>
+Deployment использует ReplicaSet для создания и управления репликами Pod'ов,
+а также для обеспечения надежности и отказоустойчивости.
+
+Пример манифеста для Deployment.
+
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      name: nginx-deployment
+    spec:
+      replicas: 3
+      selector:
+        matchLabels:
+          app: nginx-server
+      template:
+        metadata:
+          labels:
+            app: nginx-server
+        spec:
+          containers:
+            - name: nginx
+              image: nginx:latest
+              ports:
+                - containerPort: 80
 
 
-## Service
+### Обновление новых изменений
 
 [Наверх](#содержание)
 
