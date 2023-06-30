@@ -422,10 +422,41 @@ Service - объект, который определяет логический
 
 [Наверх](#содержание)
 
-`ConfigMap` -
+`ConfigMap` - используется для хранения конфигурационных данных,
+параметры конфигурации, настройки и другие данные, которые не являются конфиденциальными.
 
+*Пример:*
 
-
+    apiVersion: v1
+    kind: ConfigMap
+    metadata:
+      name: nginx-config
+    data:
+      port: 80
+      ip_address: 127.0.0.1
+    ---
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      name: nginx-deployment
+    spec:
+      replicas: 3
+      selector:
+        matchLabels:
+          app: nginx-server
+      template:
+        metadata:
+          labels:
+            app: nginx-server
+        spec:
+          containers:
+            - name: nginx
+              image: nginx:latest
+              ports:
+                - containerPort: 80
+              envFrom:
+                - configMapRef:
+                  name: nginx-config
 
 
 ## Secret
