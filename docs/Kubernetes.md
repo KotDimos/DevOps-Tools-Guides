@@ -85,29 +85,31 @@ ClusterIP, NodePort, LoadBalance или ExternalName.
 
 ## ReplicaSet
 
-    kubectl delete -f pod.yml
+[Наверх](#содержание)
 
-Проверка живучестви pod:
+`ReplicaSet` - обеспечивает масштабирование и управление однородными репликами подов (Pods).
 
-1) проверка HTTP GET - выполняет запрос HTTP GET на IP-адрес, порт и
-путь контейнера, которые будут указаны.
-2) проверка сокета TCP - пытается открыть TCP-подключение к указанному
-порту контейнера. Если подключение установлено успешно, то проверка сработала.
-3) проверка Exec - выполняет произвольную команду внутри контейнера и
-проверяет код состояния на выходе из команды.
+Пример манифеста для ReplicaSet.
 
-    apiVersion: v1
-    kind: pod
+    apiVersion: apps/v1
+    kind: ReplicaSet
     metadata:
-      name: kubia-liveness
+      name: nginx-rs
     spec:
-      containers:
-      – image: luksa/kubia-unhealthy
-        name: kubia
-        livenessProbe:
-          httpGet:
-            path: /
-            port: 8080
+      replicas: 3   # количество реплик Pod'ов, которые должны быть запущены
+      selector:
+        matchLabels:
+          app: nginx    # селектор для выбора Pod'ов, которыми должен управлять ReplicaSet
+      template:
+        metadata:
+          labels:
+            app: nginx      # метки, которые будут присвоены Pod'ам
+        spec:
+          containers:
+            - name: nginx-server
+              image: nginx:latest
+              ports:
+                - containerPort: 80     # открытие порта 80 в контейнере
 
 
 ## Namespace
