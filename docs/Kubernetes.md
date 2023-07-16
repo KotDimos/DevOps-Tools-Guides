@@ -18,6 +18,12 @@
 
 # Словарь
 
+[Наверх](#содержание)
+
+* `Манифест (manifest)` - это файл, в основном в формате yaml,
+который содержит описание объектов Kubernetes,
+такие как Pod, Deployment, Service, Ingress и т.д.
+
 Основной компонент Kubernetes это Cluster.
 
 Создаётся Kubernetes Cluster состоящий из Nodes.
