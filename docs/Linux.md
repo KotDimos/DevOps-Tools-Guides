@@ -1006,6 +1006,16 @@ G — Гбайт
 * `-c` - количество пакетов, которые будут оправлены.
 
 
+## ip
+
+[Наверх](#содержание)
+
+Синтаксис команды:
+
+    ip <option> <object> <command>
+
+
+
 ## curl
 ## wget
 ## netstat
@@ -1044,12 +1054,13 @@ G — Гбайт
 
 ## lsof
 ## ss
-## iptables
-## ip
 ## dig, nslookup
 ## nmap
-## tcpdump
 ## mtr
+## nmap
+## tcpdump
+## iptables
+
 
 # Процессы
 
