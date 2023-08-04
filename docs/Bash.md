@@ -229,6 +229,7 @@
 * `INTEGER_1 -lt INTEGER_2` - True, если INTEGER_1 меньше, чем INTEGER_2.
 * `INTEGER_1 -ge INTEGER_2` - True, если INTEGER_1 равно или больше, чем INTEGER_2.
 * `INTEGER_1 -le INTEGER_2` - True, если INTEGER_1 равно или меньше чем INTEGER_2.
+* `$string =~ $substring` - поиск строки в подстроке.
 * `-h FILE` - True, если FILE существует и является символической ссылкой.
 * `-r FILE` - True, если FILE существует и доступно для чтения.
 * `-w FILE` - True, если FILE существует и доступна для записи.
