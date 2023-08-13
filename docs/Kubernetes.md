@@ -3,13 +3,34 @@
 # Содержание
 
 * [Начало работы](#Начало-работы)
-> * [](#)
-> * [](#)
-> * [](#)
-> * [](#)
-> * [](#)
-> * [](#)
-> * [](#)
+    * [](#)
+    * [](#)
+
+* [Базовые объекты](#базовые-объекты)
+    * [Начальная конфигурация](#начальная-конфигурация)
+    * [ReplicaSet](#replicaset)
+    * [Namespace](#namespace)
+    * [Deployment](#deployment)
+        * [Обновление новых изменений](#обновление-новых-изменений)
+        * [Работоспособность приложения](#работоспособность-приложения)
+        * [Ограничение ресурсов](#ограничение-ресурсов)
+    * [Service](#service)
+    * [ConfigMap](#configmap)
+    * [Secret](#secret)
+    * [DaemonSet](#daemonset)
+    * [ReplicationController](#replicationcontroller)
+    * [](#)
+    * [](#)
+
+* [Команды](#команды)
+    * [Apply](#apply)
+    * [Delete](#delete)
+    * [Get](#get)
+    * [Logs](#logs)
+    * [Describle](#describle)
+    * [Port-forward](#port-forward)
+    * [](#)
+
 
 # Начало работы
 
@@ -503,6 +524,22 @@ tls - TLS сертификаты, для Ingress.
 
 # Команды
 
+## Apply
+
+[Наверх](#содержание)
+
+
+
+## Delete
+
+[Наверх](#содержание)
+
+
+
+## Get
+
+[Наверх](#содержание)
+
 kubectl get <type>
 
 Получение pods.
@@ -516,18 +553,34 @@ kubectl get <type>
     kubectl get po <name-pod> -o yaml
 
 Получение ReplicaSet.
+
     kubectl get replicaset
     kubectl get rs
 
+## Logs
 
+[Наверх](#содержание)
 
-kubectl create <type>
+    kubectl logs <pod>
 
+## Describle
 
+[Наверх](#содержание)
 
 Получение информации по объектам.
 
     kubectl describle <type> <name>
+
+## Port-forward
+
+[Наверх](#содержание)
+
+kubectl port-forward service 8080:8080
+
+
+## ofher
+
+[Наверх](#содержание)
 
 Получить информацию об различных объектах.
 
@@ -540,6 +593,3 @@ kubectl create <type>
 Просмотр небольшой документации по различным объектам.
 
     kubectl explain <type>
-
-
-
