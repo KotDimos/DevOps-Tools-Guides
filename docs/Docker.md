@@ -921,6 +921,12 @@ CMD ["./main"]
 
 Документацию и установку можно найти на [github](https://github.com/bcicen/ctop).
 
+* `hadolint` - инструмент который проверяет корректность написания Dockerfile.
+
+[Ссылка на онлайн использование](https://hadolint.github.io/hadolint/).
+
+[Ссылка на репозиторий и документацию](https://github.com/hadolint/hadolint).
+
 
 # Docker Compose
 
