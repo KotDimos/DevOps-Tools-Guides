@@ -64,14 +64,6 @@ Worker Node - сервер, на котором работают два глав
 * kubelet
 * kube-proxy
 
-* Pod – объект в котором работают один или больше Docker контейнеров.
-* Deployment – сэт одинаковых подов, нужен для Auto scaling и для обновления Docker image,
-держит минимальное количество работающих подов.
-* Service – предоставляет доступ к Deployment через:
-ClusterIP, NodePort, LoadBalance или ExternalName.
-* Nodes – сервера где все это работает.
-* Cluster – логическое объединение нодов.
-
 
 # Базовые объекты
 
