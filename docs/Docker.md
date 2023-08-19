@@ -45,7 +45,6 @@
     * [Уменьшение размера образа](#уменьшение-размера-образа)
     * [Многоэтапная сборка (multi-stage builds)](#многоэтапная-сборка)
     * [Dockerignore](#dockerignore)
-    * [Инструменты для Docker](#инструменты-для-docker)
 
 * [Docker Compose](#docker-compose)
     * [Установка Docker Compose](#установка-docker-compose)
@@ -78,6 +77,8 @@
     * [restart](#restart)
     * [healthcheck](#healthcheck)
     * [extends](#extends)
+
+* [Полезные инструменты](#полезные-инструменты)
 
 
 # Начало работы
@@ -912,22 +913,6 @@ CMD ["./main"]
     !README.md
 
 
-## Инструменты для Docker
-
-[Наверх](#содержание)
-
-* `ctop` - удобный просмотр контейнеров, какие запущены,
-какие простаивают, сколько памяти тратят и прочее.
-
-Документацию и установку можно найти на [github](https://github.com/bcicen/ctop).
-
-* `hadolint` - инструмент который проверяет корректность написания Dockerfile.
-
-[Ссылка на онлайн использование](https://hadolint.github.io/hadolint/).
-
-[Ссылка на репозиторий и документацию](https://github.com/hadolint/hadolint).
-
-
 # Docker Compose
 
 [Наверх](#содержание)
@@ -1518,3 +1503,19 @@ second-service.yml
         extends:
           file: first-service.yml
           service: webapp
+
+
+# Полезные инструменты
+
+[Наверх](#содержание)
+
+* `ctop` - удобный просмотр контейнеров, какие запущены,
+какие простаивают, сколько памяти тратят и прочее.
+
+Документацию и установку можно найти на [github](https://github.com/bcicen/ctop).
+
+* `hadolint` - инструмент который проверяет корректность написания Dockerfile.
+
+[Ссылка на онлайн использование](https://hadolint.github.io/hadolint/).
+
+[Ссылка на репозиторий и документацию](https://github.com/hadolint/hadolint).
