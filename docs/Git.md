@@ -2175,12 +2175,12 @@ Git хранит все изменения, которые происходил�
 Удаление коммитов одного человека.
 
     git filter-branch --commit-filter '
-	    if [ "$GIT_AUTHOR_NAME" = "KotDimos" ];
-	    then
+        if [ "$GIT_AUTHOR_NAME" = "KotDimos" ];
+        then
             skip_commit "$@";
-	    else
+        else
             git commit-tree "$@";
-	    fi' -- --all
+        fi' -- --all
 
 Если требуется изменить имя человека который создал и пушил коммит.
 Так же можно указать диапазон, а не все ветки.
@@ -2190,7 +2190,7 @@ Git хранит все изменения, которые происходил�
         GIT_AUTHOR_EMAIL=KotDimos@gmail.com
         GIT_COMMITTER_NAME=KotDimos
         GIT_COMMITTER_EMAIL=KotDimos@gmail.com
-	    ' b63eabe..feature
+        ' b63eabe..feature
 
 Где b63eabe более ранний коммит ветки feature.
 
