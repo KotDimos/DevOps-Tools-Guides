@@ -487,17 +487,17 @@ Deployment использует ReplicaSet для создания и управ
 
 [Наверх](#содержание)
 
-`generic` - пароли / токены для приложений.
-`docker-registry` - данные для авторизации в docker registry.
-`tls` - TLS сертификаты, для Ingress.
+`Secret` - секреты предназначены для хранения конфиденциальных данных.
 
-Шаблон.
+Типы секретов:
 
-    kubectl create secret <type> <name> --from-literal=<key>=<value>
-
-Пример.
-
-    kubectl create secret generic test --from-literal=test1=qwerty
+* `Opaque` - Произвольные данные для хранения.
+* `service-account-token` - Токен для ServiceAccount авторизации.
+* `dockercfg` - сериализованный `~/.dockercfg`.
+* `dockerconfigjson` - сериализованный `~/.docker/config.json`.
+* `basic-auth` - учетные данные для базовой аутентификации.
+* `ssh-auth` - учетные данные для аутентификации SSH.
+* `tls` - данные для клиента или сервера TLS.
 
 Просмотр секрета.
 
